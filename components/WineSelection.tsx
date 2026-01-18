@@ -1,8 +1,11 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { Wine, ArrowLeft, Search } from "lucide-react";
 import { wines } from "@/lib/pairings";
 import { useState, useMemo } from "react";
+import { AiOutlineRead } from "react-icons/ai";
+import { IoIosWine } from "react-icons/io";
 
 interface WineSelectionProps {
   onSelect: (wineId: string) => void;
@@ -39,7 +42,7 @@ export default function WineSelection({ onSelect, onBack }: WineSelectionProps) 
           </button>
           <div className="flex items-center gap-4">
             <div className="rounded-full bg-primary/10 p-3">
-              <Wine className="h-6 w-6 text-primary" />
+              <IoIosWine  className="h-6 w-6 text-primary" />
             </div>
             <div>
               <h1 className="font-playfair text-2xl font-medium text-primary">

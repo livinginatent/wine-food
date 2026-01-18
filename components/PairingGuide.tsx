@@ -2,6 +2,7 @@
 
 import { ArrowLeft, BookOpen, Lightbulb, Wine, UtensilsCrossed, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { IoIosWine } from "react-icons/io";
 
 interface PairingGuideProps {
   onBack: () => void;
@@ -182,7 +183,7 @@ export default function PairingGuide({ onBack }: PairingGuideProps) {
                           className="border border-secondary/20 bg-secondary/5 rounded-sm p-4 space-y-2"
                         >
                           <div className="flex items-center gap-3">
-                            <Wine className="h-4 w-4 text-primary" />
+                            <IoIosWine className="h-4 w-4 text-primary" />
                             <span className="font-inter text-sm font-medium text-primary">
                               {example.wine}
                             </span>

@@ -13,18 +13,29 @@ interface FoodSelectionProps {
 export default function FoodSelection({ onSelect, onBack }: FoodSelectionProps) {
   const [hoveredFood, setHoveredFood] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [vegetarianOnly, setVegetarianOnly] = useState(false);
 
   const filteredFoods = useMemo(() => {
-    if (!searchQuery.trim()) return foods;
+    let result = foods;
     
-    const query = searchQuery.toLowerCase();
-    return foods.filter(food => 
-      food.name.toLowerCase().includes(query) ||
-      food.category.toLowerCase().includes(query) ||
-      food.description.toLowerCase().includes(query) ||
-      food.characteristics.some(char => char.toLowerCase().includes(query))
-    );
-  }, [searchQuery]);
+    // Apply vegetarian filter
+    if (vegetarianOnly) {
+      result = result.filter(food => food.isVegetarian);
+    }
+    
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(food => 
+        food.name.toLowerCase().includes(query) ||
+        food.category.toLowerCase().includes(query) ||
+        food.description.toLowerCase().includes(query) ||
+        food.characteristics.some(char => char.toLowerCase().includes(query))
+      );
+    }
+    
+    return result;
+  }, [searchQuery, vegetarianOnly]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -56,7 +67,7 @@ export default function FoodSelection({ onSelect, onBack }: FoodSelectionProps) 
 
       {/* Search Section */}
       <section className="border-b border-secondary/20 bg-white/20 px-6 py-6">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-6xl space-y-4">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-accent/40" />
             <input
@@ -67,6 +78,25 @@ export default function FoodSelection({ onSelect, onBack }: FoodSelectionProps) 
               className="w-full rounded-sm border border-secondary/30 bg-white/50 px-12 py-4 font-inter text-sm font-light text-accent placeholder:text-accent/40 focus:border-secondary/50 focus:outline-none focus:ring-1 focus:ring-secondary/20"
             />
           </div>
+          {/* Vegetarian Filter */}
+          <div className="flex items-center gap-3">
+            <label className="flex items-center gap-2 cursor-pointer group">
+              <input
+                type="checkbox"
+                checked={vegetarianOnly}
+                onChange={(e) => setVegetarianOnly(e.target.checked)}
+                className="h-4 w-4 rounded border-secondary/30 text-secondary focus:ring-secondary/20 focus:ring-2 cursor-pointer"
+              />
+              <span className="font-inter text-sm font-light text-accent group-hover:text-accent/80 transition-colors">
+                Vegetarian only
+              </span>
+            </label>
+            {vegetarianOnly && (
+              <span className="font-inter text-xs font-light text-accent/50">
+                ({filteredFoods.length} {filteredFoods.length === 1 ? 'item' : 'items'})
+              </span>
+            )}
+          </div>
         </div>
       </section>
 
@@ -76,7 +106,13 @@ export default function FoodSelection({ onSelect, onBack }: FoodSelectionProps) 
           {filteredFoods.length === 0 ? (
             <div className="text-center py-16">
               <p className="font-inter text-base font-light text-accent/60">
-                No foods found matching "{searchQuery}"
+                {vegetarianOnly && searchQuery.trim() 
+                  ? `No vegetarian foods found matching "${searchQuery}"`
+                  : vegetarianOnly
+                  ? "No vegetarian foods found"
+                  : searchQuery.trim()
+                  ? `No foods found matching "${searchQuery}"`
+                  : "No foods found"}
               </p>
             </div>
           ) : (

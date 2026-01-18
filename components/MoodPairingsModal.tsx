@@ -2,6 +2,7 @@
 
 import { X, Wine, UtensilsCrossed } from "lucide-react";
 import { Mood } from "@/lib/moods";
+import { IoIosWine } from "react-icons/io";
 
 interface MoodPairingsModalProps {
   mood: Mood;
@@ -60,7 +61,7 @@ export default function MoodPairingsModal({ mood, onClose }: MoodPairingsModalPr
               >
                 <div className="flex items-start gap-4">
                   <div className="rounded-full bg-primary/10 p-3">
-                    <Wine className="h-5 w-5 text-primary" />
+                    <IoIosWine className="h-5 w-5 text-primary" />
                   </div>
                   <div className="flex-1">
                     <h4 className="font-playfair text-xl font-medium text-primary mb-1">

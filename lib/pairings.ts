@@ -14,6 +14,7 @@ export interface Food {
   description: string;
   characteristics: string[];
   winePairings: string[];
+  isVegetarian: boolean; // Added for filtering as requested
 }
 
 export const wines: Wine[] = [
@@ -23,7 +24,31 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Full-bodied with rich tannins and dark fruit flavors",
     characteristics: ["Bold", "Tannic", "Dark Fruit", "Oak"],
-    foodPairings: ["Grilled Steak", "Roast Lamb", "Aged Cheese", "Dark Chocolate"]
+    foodPairings: ["Grilled Steak", "Aged Cheddar", "Venison", "Beef Wellington", "Meatloaf", "Cheese Platter", "Roast Lamb", "Aged Cheese", "Dark Chocolate"]
+  },
+  {
+    id: "champagne",
+    name: "Champagne",
+    type: "Sparkling Wine",
+    description: "The gold standard of bubbles; yeasty, toasty, and high acidity",
+    characteristics: ["Toasty", "Brioche", "High Acidity", "Citrus"],
+    foodPairings: ["Goat Cheese", "Smoked Salmon Blini", "Fish and Chips", "Fried Chicken", "Oysters", "Truffle Fries", "Triple Cream Cheese", "Fish Tacos"]
+  },
+  {
+    id: "english-sparkling",
+    name: "English Sparkling",
+    type: "Sparkling Wine",
+    description: "Crisp and lean with high acidity, often showing green apple and elderflower",
+    characteristics: ["Green Apple", "High Acidity", "Lean", "Mineral"],
+    foodPairings: ["Asparagus", "Truffle Fries", "Fish and Chips", "Strawberry Pavlova", "Scallops with Pancetta", "Goat's Cheese and Caramelized Onion Tart", "Smoked Salmon Blini"]
+  },
+  {
+    id: "cotes-du-rhone",
+    name: "Côtes du Rhône",
+    type: "Red Wine",
+    description: "Classic French blend (usually Grenache, Syrah, Mourvèdre); earthy and peppery",
+    characteristics: ["Earthy", "Peppery", "Red Fruit", "Medium-bodied"],
+    foodPairings: ["Cassoulet", "Roasted Cauliflower Steak", "Wild Mushroom Risotto", "Roasted Root Veggies", "Ratatouille", "Lamb Chops", "Lentil Soup", "Mushroom Risotto", "Hearty Lentil Stew"]
   },
   {
     id: "chardonnay",
@@ -31,7 +56,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Creamy and buttery with notes of apple and vanilla",
     characteristics: ["Buttery", "Creamy", "Oak", "Citrus"],
-    foodPairings: ["Lobster", "Roast Chicken", "Creamy Pasta", "Brie Cheese"]
+    foodPairings: ["Salmon", "Mushrooms", "Aged Cheddar", "Shrimp Scampi", "Quiche Lorraine", "Cornish Game Hen", "Gnocchi", "Lentil Soup", "Crab Cakes", "Stuffed Mushrooms", "Fried Chicken", "Cheese Platter", "Wild Mushroom Risotto", "Smoked Salmon Blini", "Scallops with Pancetta", "Lobster", "Roast Chicken", "Creamy Pasta", "Brie Cheese"]
   },
   {
     id: "pinot-noir",
@@ -39,7 +64,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Elegant and light-bodied with red fruit and earthy notes",
     characteristics: ["Light", "Earthy", "Red Fruit", "Elegant"],
-    foodPairings: ["Salmon", "Duck", "Mushrooms", "Goat Cheese"]
+    foodPairings: ["Salmon", "Roast Chicken", "Pork Belly", "Pork Tenderloin", "Cornish Game Hen", "Venison", "Beef Bourguignon", "Coq au Vin", "Roasted Beet Salad", "Lentil Soup", "Wild Mushroom Risotto", "Hearty Lentil Stew", "Duck", "Mushrooms", "Goat Cheese"]
   },
   {
     id: "sauvignon-blanc",
@@ -47,7 +72,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Crisp and refreshing with herbaceous and citrus notes",
     characteristics: ["Crisp", "Herbaceous", "Citrus", "Mineral"],
-    foodPairings: ["Goat Cheese", "Seafood", "Salads", "Asparagus"]
+    foodPairings: ["Oysters", "Lobster", "Creamy Pasta", "Ceviche", "Shrimp Scampi", "Roasted Beet Salad", "Bouillabaisse", "Grilled Halloumi", "Crab Cakes", "Caesar Salad", "Gazpacho", "Bruschetta", "Tempura", "Greek Salad", "Goat's Cheese and Caramelized Onion Tart", "Spanakopita", "Goat Cheese", "Seafood", "Salads", "Asparagus"]
   },
   {
     id: "merlot",
@@ -55,7 +80,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Smooth and velvety with plum and cherry flavors",
     characteristics: ["Smooth", "Plum", "Cherry", "Soft Tannins"],
-    foodPairings: ["Pork", "Pasta", "Tomato-based Dishes", "Soft Cheese"]
+    foodPairings: ["Grilled Steak", "Dark Chocolate", "BBQ Ribs", "Pork Belly", "Pork Tenderloin", "Pulled Pork Sandwich", "Creamy Pasta", "Beef Bourguignon", "Duck Breast", "Venison", "Mushrooms", "Hearty Lentil Stew", "Pork", "Pasta", "Tomato-based Dishes", "Soft Cheese"]
   },
   {
     id: "riesling",
@@ -63,7 +88,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Aromatic with notes of peach, apricot, and honey",
     characteristics: ["Aromatic", "Sweet", "Acidic", "Fruity"],
-    foodPairings: ["Spicy Asian Cuisine", "Pork", "Duck", "Fruit Desserts"]
+    foodPairings: ["Goat Cheese", "Blue Cheese", "Roast Chicken", "Spicy Curry", "Fruit Tart", "Tempura", "Fruit Platter", "Spicy Asian Cuisine", "Pork", "Duck", "Fruit Desserts"]
   },
   {
     id: "syrah",
@@ -71,7 +96,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Bold and spicy with dark fruit and pepper notes",
     characteristics: ["Bold", "Spicy", "Pepper", "Dark Fruit"],
-    foodPairings: ["BBQ", "Game Meat", "Spicy Dishes", "Hard Cheese"]
+    foodPairings: ["Grilled Steak", "Lamb Chops", "Duck Breast", "Beef Bourguignon", "Venison", "Cassoulet", "Chili Con Carne", "Shepherd's Pie", "Meatloaf", "BBQ Ribs", "BBQ", "Game Meat", "Spicy Dishes", "Hard Cheese"]
   },
   {
     id: "pinot-grigio",
@@ -79,7 +104,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Light and crisp with citrus and green apple flavors",
     characteristics: ["Light", "Crisp", "Citrus", "Dry"],
-    foodPairings: ["Light Seafood", "Salads", "Poultry", "Fresh Cheese"]
+    foodPairings: ["Salmon", "Creamy Pasta", "Sushi & Sashimi", "Asparagus", "Shrimp Scampi", "Mussels Marinara", "Gnocchi", "Caesar Salad", "Fish Tacos", "Spanakopita", "Caprese Salad", "Light Seafood", "Salads", "Poultry", "Fresh Cheese"]
   },
   {
     id: "malbec",
@@ -87,7 +112,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Deep purple, full-bodied wine with plum and black cherry flavors",
     characteristics: ["Jammy", "Plum", "Smooth Tannins", "Velvety"],
-    foodPairings: ["Grilled Steak", "BBQ Ribs", "Lamb Chops", "Hard Cheese"]
+    foodPairings: ["Grilled Steak", "Tacos", "Aged Cheddar", "Carnitas", "Pulled Pork Sandwich", "Chili Con Carne", "BBQ Ribs", "Lamb Chops", "Hard Cheese"]
   },
   {
     id: "zinfandel",
@@ -95,7 +120,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Bold and fruit-forward with high alcohol and jammy notes",
     characteristics: ["Jammy", "High Alcohol", "Spicy", "Blackberry"],
-    foodPairings: ["BBQ Ribs", "Spicy Curry", "Pizza", "Dark Chocolate"]
+    foodPairings: ["BBQ Ribs", "Spicy Curry", "Pizza Margherita", "Eggplant Parmesan", "Stuffed Bell Peppers", "Carnitas", "Chili Con Carne", "Fried Chicken", "Shepherd's Pie", "Meatloaf", "Pizza", "Dark Chocolate", "Blue Cheese"]
   },
   {
     id: "sangiovese",
@@ -103,7 +128,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "The soul of Chianti, featuring high acidity and cherry notes",
     characteristics: ["Acidic", "Cherry", "Herbal", "Savory"],
-    foodPairings: ["Tomato-based Dishes", "Pizza", "Roasted Root Veggies", "Salami"]
+    foodPairings: ["Ratatouille", "Eggplant Parmesan", "Osso Buco", "Shakshuka", "Tomato-based Dishes", "Pizza", "Roasted Root Veggies", "Salami"]
   },
   {
     id: "tempranillo",
@@ -111,7 +136,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Spanish classic with flavors of leather, tobacco, and red fruit",
     characteristics: ["Savory", "Leather", "Tobacco", "Red Fruit"],
-    foodPairings: ["Tacos", "Lamb Chops", "Cured Meats", "Roasted Vegetables"]
+    foodPairings: ["Paella", "Carnitas", "Tacos", "Lamb Chops", "Cured Meats", "Roasted Vegetables"]
   },
   {
     id: "prosecco",
@@ -119,7 +144,7 @@ export const wines: Wine[] = [
     type: "Sparkling Wine",
     description: "Light, bubbly, and fruity Italian sparkling wine",
     characteristics: ["Bubbly", "Fruity", "Light", "Floral"],
-    foodPairings: ["Oysters", "Fruit Tart", "Appetizers", "Mild Cheese"]
+    foodPairings: ["Truffle Fries", "Strawberry Pavlova", "Bruschetta", "Fruit Platter", "Oysters", "Fruit Tart", "Appetizers", "Mild Cheese"]
   },
   {
     id: "gewurztraminer",
@@ -127,7 +152,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Highly aromatic with intense floral and lychee scents",
     characteristics: ["Floral", "Lychee", "Low Acidity", "Full-bodied"],
-    foodPairings: ["Spicy Curry", "Duck Breast", "Asian Cuisine", "Strong Cheese"]
+    foodPairings: ["Spicy Curry", "Duck Breast", "Vegetable Stir Fry", "Asian Cuisine", "Strong Cheese"]
   },
   {
     id: "albarino",
@@ -135,7 +160,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "High acidity with refreshing stone fruit and saline notes",
     characteristics: ["High Acidity", "Saline", "Peach", "Zesty"],
-    foodPairings: ["Oysters", "Sushi", "White Fish", "Salads"]
+    foodPairings: ["Tacos", "Paella", "Gazpacho", "Fish and Chips", "Fish Tacos", "Oysters", "Sushi", "White Fish", "Salads"]
   },
   {
     id: "rose",
@@ -143,7 +168,7 @@ export const wines: Wine[] = [
     type: "Rosé Wine",
     description: "Fresh and versatile with strawberry and watermelon notes",
     characteristics: ["Fresh", "Berry", "Crisp", "Dry"],
-    foodPairings: ["Salmon", "Salads", "Grilled Chicken", "Charcuterie"]
+    foodPairings: ["Ratatouille", "Pork Tenderloin", "Roasted Beet Salad", "Quiche Lorraine", "Lentil Soup", "Gnocchi", "Falafel", "Bouillabaisse", "Spanakopita", "Gazpacho", "Caprese Salad", "Stuffed Mushrooms", "Fish Tacos", "Bruschetta", "Stuffed Dates", "Greek Salad", "Cheese Platter", "Salmon", "Salads", "Grilled Chicken", "Charcuterie"]
   },
   {
     id: "provence-rose",
@@ -175,7 +200,7 @@ export const wines: Wine[] = [
     type: "Dessert Wine",
     description: "Sweet, fortified red wine with rich berry and nut flavors",
     characteristics: ["Sweet", "Fortified", "Rich", "Nutty"],
-    foodPairings: ["Blue Cheese", "Dark Chocolate", "Walnuts", "Dried Fruits"]
+    foodPairings: ["Stuffed Dates", "Blue Cheese", "Dark Chocolate", "Walnuts", "Dried Fruits"]
   },
   {
     id: "moscato",
@@ -183,7 +208,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Sweet and low alcohol with orange blossom and peach notes",
     characteristics: ["Sweet", "Light", "Floral", "Peach"],
-    foodPairings: ["Fruit Tart", "Spicy Asian Cuisine", "Desserts", "Brie Cheese"]
+    foodPairings: ["Spicy Curry", "Stuffed Dates", "Fruit Platter", "Fruit Tart", "Spicy Asian Cuisine", "Desserts", "Brie Cheese"]
   },
   {
     id: "grenache",
@@ -191,7 +216,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Medium-bodied with spicy berry flavors and soft tannins",
     characteristics: ["Spicy", "Strawberry", "Soft", "Low Tannin"],
-    foodPairings: ["Roasted Vegetables", "Pork Belly", "Grilled Chicken", "Stews"]
+    foodPairings: ["Ratatouille", "Tacos", "Lentil Soup", "Pork Tenderloin", "Cornish Game Hen", "Cassoulet", "Bouillabaisse", "Carnitas", "Pulled Pork Sandwich", "Roasted Vegetables", "Pork Belly", "Grilled Chicken", "Stews"]
   },
   {
     id: "viognier",
@@ -199,7 +224,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Full-bodied white with floral aromas and oily texture",
     characteristics: ["Floral", "Honeysuckle", "Full-bodied", "Rich"],
-    foodPairings: ["Spicy Curry", "Lobster", "Roasted Root Veggies", "Poultry"]
+    foodPairings: ["Spicy Curry", "Creamy Pasta", "Crab Cakes", "Scallops with Pancetta", "Lobster", "Roasted Root Veggies", "Poultry"]
   },
   // Additional wines
   {
@@ -208,7 +233,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Italian powerhouse with high tannins and notes of tar and roses",
     characteristics: ["High Tannins", "Tar", "Rose", "Earthy"],
-    foodPairings: ["Truffle Pasta", "Braised Beef", "Wild Game", "Mushrooms"]
+    foodPairings: ["Wild Mushroom Risotto", "Truffle Pasta", "Braised Beef", "Wild Game", "Mushrooms"]
   },
   {
     id: "carmenere",
@@ -216,7 +241,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Chilean specialty with green pepper and dark fruit notes",
     characteristics: ["Herbal", "Green Pepper", "Dark Fruit", "Medium-bodied"],
-    foodPairings: ["Chilean Empanadas", "Spicy Sausages", "Grilled Vegetables", "Lamb"]
+    foodPairings: ["Lamb Chops", "Chilean Empanadas", "Spicy Sausages", "Grilled Vegetables", "Lamb"]
   },
   {
     id: "petite-sirah",
@@ -224,7 +249,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Inky dark with intense tannins and blueberry flavors",
     characteristics: ["Inky", "High Tannins", "Blueberry", "Peppery"],
-    foodPairings: ["Barbecue Brisket", "Blue Cheese", "Venison", "Chocolate Desserts"]
+    foodPairings: ["Chili Con Carne", "Barbecue Brisket", "Blue Cheese", "Venison", "Chocolate Desserts"]
   },
   {
     id: "gruner-veltliner",
@@ -232,7 +257,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Austrian white with white pepper and citrus notes",
     characteristics: ["Peppery", "Citrus", "High Acidity", "Mineral"],
-    foodPairings: ["Asparagus", "Vegetarian Dishes", "Sushi", "Light Fish"]
+    foodPairings: ["Asparagus", "Sushi & Sashimi", "Vegetarian Dishes", "Sushi", "Light Fish"]
   },
   {
     id: "vermentino",
@@ -240,7 +265,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Mediterranean white with herbal and saline characteristics",
     characteristics: ["Herbal", "Saline", "Citrus", "Light"],
-    foodPairings: ["Seafood Stew", "Grilled Fish", "Mediterranean Salads", "Olives"]
+    foodPairings: ["Ceviche", "Shrimp Scampi", "Mussels Marinara", "Caprese Salad", "Seafood Stew", "Grilled Fish", "Mediterranean Salads", "Olives"]
   },
   {
     id: "torrontes",
@@ -256,7 +281,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Italian red with high acidity and low tannins",
     characteristics: ["High Acidity", "Low Tannins", "Cherry", "Light-bodied"],
-    foodPairings: ["Pizza", "Pasta with Tomato Sauce", "Cold Cuts", "Ratatouille"]
+    foodPairings: ["Eggplant Parmesan", "Gnocchi", "Risotto", "Shakshuka", "Pizza", "Pasta with Tomato Sauce", "Cold Cuts", "Ratatouille"]
   },
   {
     id: "cinsault",
@@ -264,7 +289,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Light-bodied red with floral and strawberry notes",
     characteristics: ["Light", "Floral", "Strawberry", "Low Alcohol"],
-    foodPairings: ["Charcuterie", "Grilled Fish", "Vegetable Terrine", "Goat Cheese"]
+    foodPairings: ["Ratatouille", "Charcuterie", "Grilled Fish", "Vegetable Terrine", "Goat Cheese"]
   },
   {
     id: "sparkling-rose",
@@ -272,7 +297,7 @@ export const wines: Wine[] = [
     type: "Sparkling Wine",
     description: "Bubbly rosé with red fruit and crisp acidity",
     characteristics: ["Bubbly", "Red Fruit", "Crisp", "Festive"],
-    foodPairings: ["Smoked Salmon", "Strawberry Desserts", "Fried Chicken", "Sushi"]
+    foodPairings: ["Sushi & Sashimi", "Smoked Salmon", "Strawberry Desserts", "Fried Chicken", "Sushi"]
   },
   {
     id: "lambrusco",
@@ -288,7 +313,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Versatile with honey, apple, and mineral notes",
     characteristics: ["Honey", "Apple", "Mineral", "Versatile"],
-    foodPairings: ["Roast Pork", "Thai Curry", "Quiche", "Goat Cheese"]
+    foodPairings: ["Roasted Cauliflower Steak", "Roasted Beet Salad", "Pork Belly", "Roast Pork", "Thai Curry", "Quiche", "Goat Cheese"]
   },
   {
     id: "mourvedre",
@@ -304,7 +329,7 @@ export const wines: Wine[] = [
     type: "Fortified Wine",
     description: "Spanish fortified wine ranging from dry to sweet",
     characteristics: ["Fortified", "Nutty", "Complex", "Oxidative"],
-    foodPairings: ["Tapas", "Olives", "Almonds", "Iberian Ham"]
+    foodPairings: ["Gazpacho", "Stuffed Dates", "Tapas", "Olives", "Almonds", "Iberian Ham"]
   },
   {
     id: "ice-wine",
@@ -312,7 +337,7 @@ export const wines: Wine[] = [
     type: "Dessert Wine",
     description: "Intensely sweet wine made from frozen grapes",
     characteristics: ["Very Sweet", "Concentrated", "Honey", "Apricot"],
-    foodPairings: ["Foie Gras", "Blue Cheese", "Fruit Desserts", "Crème Brûlée"]
+    foodPairings: ["Blue Cheese", "Foie Gras", "Fruit Desserts", "Crème Brûlée"]
   },
   {
     id: "spatburgunder",
@@ -320,7 +345,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "German Pinot Noir with elegance and red fruit",
     characteristics: ["Elegant", "Red Fruit", "Light", "Acidic"],
-    foodPairings: ["Roast Veal", "Trout", "Wild Mushrooms", "Light Pasta"]
+    foodPairings: ["Mushrooms", "Roast Veal", "Trout", "Wild Mushrooms", "Light Pasta"]
   },
   {
     id: "xinomavro",
@@ -328,7 +353,7 @@ export const wines: Wine[] = [
     type: "Red Wine",
     description: "Greek red with high acidity and tomato-olive notes",
     characteristics: ["High Acidity", "Tomato", "Olive", "Tannic"],
-    foodPairings: ["Greek Lamb", "Tomato-based Stews", "Grilled Vegetables", "Feta"]
+    foodPairings: ["Grilled Halloumi", "Greek Lamb", "Tomato-based Stews", "Grilled Vegetables", "Feta"]
   },
   {
     id: "fassolis",
@@ -336,7 +361,7 @@ export const wines: Wine[] = [
     type: "White Wine",
     description: "Greek white with high acidity and volcanic minerality",
     characteristics: ["High Acidity", "Mineral", "Citrus", "Saline"],
-    foodPairings: ["Grilled Octopus", "Fried Calamari", "Greek Salad", "Shellfish"]
+    foodPairings: ["Spanakopita", "Grilled Octopus", "Fried Calamari", "Greek Salad", "Shellfish"]
   }
 ];
 
@@ -347,7 +372,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Rich, savory beef with charred exterior",
     characteristics: ["Rich", "Savory", "Umami", "Hearty"],
-    winePairings: ["Cabernet Sauvignon", "Merlot", "Syrah", "Malbec"]
+    winePairings: ["Cabernet Sauvignon", "Malbec", "Merlot", "Syrah"],
+    isVegetarian: false
   },
   {
     id: "salmon",
@@ -355,7 +381,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Oily, flavorful fish with delicate texture",
     characteristics: ["Oily", "Rich", "Delicate", "Umami"],
-    winePairings: ["Pinot Noir", "Chardonnay", "Pinot Grigio", "Rosé"]
+    winePairings: ["Rosato", "Pinot Noir", "Chardonnay", "Pinot Grigio", "Rosé"],
+    isVegetarian: false
   },
   {
     id: "pasta-cream",
@@ -363,7 +390,8 @@ export const foods: Food[] = [
     category: "Pasta",
     description: "Rich pasta dishes with cream-based sauces",
     characteristics: ["Creamy", "Rich", "Buttery", "Comforting"],
-    winePairings: ["Chardonnay", "Pinot Grigio", "Sauvignon Blanc", "Viognier"]
+    winePairings: ["Rosato", "Chardonnay", "Pinot Grigio", "Sauvignon Blanc", "Viognier"],
+    isVegetarian: true
   },
   {
     id: "roast-chicken",
@@ -371,7 +399,8 @@ export const foods: Food[] = [
     category: "Poultry",
     description: "Tender, flavorful roasted poultry",
     characteristics: ["Tender", "Versatile", "Mild", "Savory"],
-    winePairings: ["Chardonnay", "Pinot Noir", "Riesling", "Sauvignon Blanc"]
+    winePairings: ["White Zinfandel", "Rosato", "Chardonnay", "Pinot Noir", "Riesling", "Sauvignon Blanc"],
+    isVegetarian: false
   },
   {
     id: "goat-cheese",
@@ -379,7 +408,8 @@ export const foods: Food[] = [
     category: "Cheese",
     description: "Tangy and creamy with earthy notes",
     characteristics: ["Tangy", "Creamy", "Earthy", "Sharp"],
-    winePairings: ["Sauvignon Blanc", "Pinot Noir", "Riesling", "Champagne"]
+    winePairings: ["Provence Rosé", "White Zinfandel", "Rosato", "Cinsault", "Chenin Blanc", "Sauvignon Blanc", "Pinot Noir", "Riesling", "Champagne"],
+    isVegetarian: true
   },
   {
     id: "dark-chocolate",
@@ -387,7 +417,8 @@ export const foods: Food[] = [
     category: "Dessert",
     description: "Rich, bittersweet chocolate",
     characteristics: ["Rich", "Bittersweet", "Intense", "Cocoa"],
-    winePairings: ["Cabernet Sauvignon", "Port", "Merlot", "Zinfandel"]
+    winePairings: ["Cabernet Sauvignon", "Port", "Merlot", "Zinfandel"],
+    isVegetarian: true
   },
   {
     id: "mushrooms",
@@ -395,7 +426,8 @@ export const foods: Food[] = [
     category: "Vegetables",
     description: "Earthy and umami-rich fungi",
     characteristics: ["Earthy", "Umami", "Savory", "Rich"],
-    winePairings: ["Pinot Noir", "Chardonnay", "Merlot", "Burgundy"]
+    winePairings: ["Rosato", "Nebbiolo", "Spätburgunder", "Pinot Noir", "Chardonnay", "Merlot", "Burgundy"],
+    isVegetarian: true
   },
   {
     id: "lobster",
@@ -403,7 +435,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Sweet, luxurious shellfish",
     characteristics: ["Sweet", "Rich", "Luxurious", "Buttery"],
-    winePairings: ["Chardonnay", "Champagne", "Sauvignon Blanc", "Viognier"]
+    winePairings: ["Provence Rosé", "Chardonnay", "Champagne", "Sauvignon Blanc", "Viognier"],
+    isVegetarian: false
   },
   {
     id: "oysters",
@@ -411,7 +444,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Briny, delicate, and fresh shellfish",
     characteristics: ["Briny", "Fresh", "Delicate", "Cold"],
-    winePairings: ["Sauvignon Blanc", "Prosecco", "Albariño", "Champagne"]
+    winePairings: ["Sauvignon Blanc", "Prosecco", "Albariño", "Champagne"],
+    isVegetarian: false
   },
   {
     id: "spicy-curry",
@@ -419,7 +453,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Complex, heat-heavy dishes with aromatic spices",
     characteristics: ["Spicy", "Aromatic", "Hot", "Complex"],
-    winePairings: ["Riesling", "Gewürztraminer", "Moscato", "Zinfandel"]
+    winePairings: ["White Zinfandel", "Viognier", "Riesling", "Gewürztraminer", "Moscato", "Zinfandel"],
+    isVegetarian: true
   },
   {
     id: "lamb-chops",
@@ -427,7 +462,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Gamey and tender meat with rich fat content",
     characteristics: ["Gamey", "Fatty", "Tender", "Savory"],
-    winePairings: ["Cabernet Sauvignon", "Syrah", "Malbec", "Tempranillo"]
+    winePairings: ["Côtes du Rhône", "Carmenère", "Cabernet Sauvignon", "Syrah", "Malbec", "Tempranillo"],
+    isVegetarian: false
   },
   {
     id: "sushi",
@@ -435,7 +471,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Clean, delicate raw fish with vinegared rice",
     characteristics: ["Clean", "Delicate", "Vinegar", "Umami"],
-    winePairings: ["Pinot Grigio", "Albariño", "Prosecco", "Dry Rosé"]
+    winePairings: ["Grüner Veltliner", "Sparkling Rosé", "Pinot Grigio", "Albariño", "Prosecco", "Dry Rosé"],
+    isVegetarian: false
   },
   {
     id: "blue-cheese",
@@ -443,7 +480,8 @@ export const foods: Food[] = [
     category: "Cheese",
     description: "Pungent, salty, and creamy fermented cheese",
     characteristics: ["Pungent", "Salty", "Creamy", "Strong"],
-    winePairings: ["Port", "Riesling", "Sauternes", "Zinfandel"]
+    winePairings: ["Petite Sirah", "Ice Wine", "Port", "Riesling", "Sauternes", "Zinfandel"],
+    isVegetarian: true
   },
   {
     id: "bbq-ribs",
@@ -451,7 +489,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Smoky, sweet, and fatty pork or beef",
     characteristics: ["Smoky", "Sweet", "Fatty", "Rich"],
-    winePairings: ["Zinfandel", "Malbec", "Syrah", "Merlot"]
+    winePairings: ["White Zinfandel", "Zinfandel", "Malbec", "Syrah", "Merlot"],
+    isVegetarian: false
   },
   {
     id: "asparagus",
@@ -459,7 +498,8 @@ export const foods: Food[] = [
     category: "Vegetables",
     description: "Grassy and bitter green vegetable",
     characteristics: ["Grassy", "Bitter", "Green", "Crunchy"],
-    winePairings: ["Sauvignon Blanc", "Pinot Grigio", "Grüner Veltliner", "Sancerre"]
+    winePairings: ["English Sparkling", "Provence Rosé", "Sauvignon Blanc", "Pinot Grigio", "Grüner Veltliner", "Sancerre"],
+    isVegetarian: true
   },
   {
     id: "fruit-tart",
@@ -467,7 +507,8 @@ export const foods: Food[] = [
     category: "Dessert",
     description: "Sweet pastry with fresh fruit and custard",
     characteristics: ["Sweet", "Acidic", "Creamy", "Crisp"],
-    winePairings: ["Moscato", "Prosecco", "Riesling", "Late Harvest Chardonnay"]
+    winePairings: ["Moscato", "Prosecco", "Riesling", "Late Harvest Chardonnay"],
+    isVegetarian: true
   },
   {
     id: "pork-belly",
@@ -475,7 +516,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Extremely fatty and savory cut of pork",
     characteristics: ["Fatty", "Rich", "Savory", "Melting"],
-    winePairings: ["Riesling", "Pinot Noir", "Grenache", "Chenin Blanc"]
+    winePairings: ["Riesling", "Pinot Noir", "Grenache", "Chenin Blanc"],
+    isVegetarian: false
   },
   {
     id: "duck-breast",
@@ -483,7 +525,8 @@ export const foods: Food[] = [
     category: "Poultry",
     description: "Rich, gamey poultry with a thick layer of fat",
     characteristics: ["Rich", "Gamey", "Fatty", "Savory"],
-    winePairings: ["Pinot Noir", "Gewürztraminer", "Merlot", "Syrah"]
+    winePairings: ["Pinot Noir", "Gewürztraminer", "Merlot", "Syrah"],
+    isVegetarian: false
   },
   {
     id: "tacos",
@@ -491,7 +534,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Savory meat with citrus and spice notes",
     characteristics: ["Spicy", "Zesty", "Savory", "Textured"],
-    winePairings: ["Tempranillo", "Grenache", "Malbec", "Albariño"]
+    winePairings: ["Tempranillo", "Grenache", "Malbec", "Albariño"],
+    isVegetarian: false
   },
   {
     id: "aged-cheddar",
@@ -499,7 +543,8 @@ export const foods: Food[] = [
     category: "Cheese",
     description: "Sharp, crumbly, and nutty long-aged cheese",
     characteristics: ["Sharp", "Crumbly", "Nutty", "Salty"],
-    winePairings: ["Cabernet Sauvignon", "Chardonnay", "Syrah", "Malbec"]
+    winePairings: ["Cabernet Sauvignon", "Chardonnay", "Syrah", "Malbec"],
+    isVegetarian: true
   },
   // Expanded food list
   {
@@ -508,7 +553,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "Crisp vegetables in savory Asian-style sauce",
     characteristics: ["Crisp", "Savory", "Vegetal", "Light"],
-    winePairings: ["Riesling", "Pinot Grigio", "Sauvignon Blanc", "Gewürztraminer"]
+    winePairings: ["Riesling", "Pinot Grigio", "Sauvignon Blanc", "Gewürztraminer"],
+    isVegetarian: true
   },
   {
     id: "beef-bourguignon",
@@ -516,7 +562,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "French beef stew braised in red wine",
     characteristics: ["Rich", "Savory", "Wine-infused", "Comforting"],
-    winePairings: ["Pinot Noir", "Burgundy", "Merlot", "Syrah"]
+    winePairings: ["Pinot Noir", "Burgundy", "Merlot", "Syrah"],
+    isVegetarian: false
   },
   {
     id: "ceviche",
@@ -524,7 +571,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Raw fish cured in citrus juices",
     characteristics: ["Citrusy", "Fresh", "Acidic", "Light"],
-    winePairings: ["Sauvignon Blanc", "Albariño", "Vermentino", "Sparkling Wine"]
+    winePairings: ["Torrontés", "Sauvignon Blanc", "Albariño", "Vermentino", "Sparkling Wine"],
+    isVegetarian: false
   },
   {
     id: "ratatouille",
@@ -532,7 +580,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "French vegetable stew with tomatoes and herbs",
     characteristics: ["Herbal", "Vegetal", "Tomato-based", "Earthy"],
-    winePairings: ["Rosé", "Grenache", "Sangiovese", "Cinsault"]
+    winePairings: ["Côtes du Rhône", "Barbera", "Rosé", "Grenache", "Sangiovese", "Cinsault"],
+    isVegetarian: true
   },
   {
     id: "pork-tenderloin",
@@ -540,7 +589,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Lean, tender pork with mild flavor",
     characteristics: ["Lean", "Mild", "Tender", "Versatile"],
-    winePairings: ["Pinot Noir", "Chardonnay", "Rosé", "Grenache"]
+    winePairings: ["Pinot Noir", "Chardonnay", "Rosé", "Grenache"],
+    isVegetarian: false
   },
   {
     id: "eggplant-parmesan",
@@ -548,7 +598,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "Breaded eggplant with tomato sauce and cheese",
     characteristics: ["Rich", "Tomato", "Cheesy", "Hearty"],
-    winePairings: ["Sangiovese", "Barbera", "Zinfandel", "Chianti"]
+    winePairings: ["Sangiovese", "Barbera", "Zinfandel", "Chianti"],
+    isVegetarian: true
   },
   {
     id: "shrimp-scampi",
@@ -556,7 +607,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Garlic butter shrimp with white wine sauce",
     characteristics: ["Garlicky", "Buttery", "Seafood", "Rich"],
-    winePairings: ["Chardonnay", "Pinot Grigio", "Sauvignon Blanc", "Vermentino"]
+    winePairings: ["Chardonnay", "Pinot Grigio", "Sauvignon Blanc", "Vermentino"],
+    isVegetarian: false
   },
   {
     id: "venison",
@@ -564,7 +616,8 @@ export const foods: Food[] = [
     category: "Game",
     description: "Lean, gamey deer meat",
     characteristics: ["Gamey", "Lean", "Rich", "Earthy"],
-    winePairings: ["Pinot Noir", "Syrah", "Merlot", "Cabernet Sauvignon"]
+    winePairings: ["Petite Sirah", "Pinot Noir", "Syrah", "Merlot", "Cabernet Sauvignon"],
+    isVegetarian: false
   },
   {
     id: "paella",
@@ -572,7 +625,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Spanish rice dish with seafood, meat, and saffron",
     characteristics: ["Saffron", "Savory", "Complex", "Rich"],
-    winePairings: ["Albariño", "Rosé", "Garnacha", "Tempranillo"]
+    winePairings: ["Albariño", "Rosé", "Garnacha", "Tempranillo"],
+    isVegetarian: false
   },
   {
     id: "quiche-lorraine",
@@ -580,7 +634,8 @@ export const foods: Food[] = [
     category: "Egg Dishes",
     description: "Savory custard pie with bacon and cheese",
     characteristics: ["Creamy", "Savory", "Rich", "Egg-based"],
-    winePairings: ["Chardonnay", "Sparkling Wine", "Rosé", "Pinot Blanc"]
+    winePairings: ["Chenin Blanc", "Chardonnay", "Sparkling Wine", "Rosé", "Pinot Blanc"],
+    isVegetarian: false
   },
   {
     id: "beet-salad",
@@ -588,7 +643,8 @@ export const foods: Food[] = [
     category: "Salads",
     description: "Earthly beets with goat cheese and nuts",
     characteristics: ["Earthy", "Sweet", "Creamy", "Nutty"],
-    winePairings: ["Pinot Noir", "Sauvignon Blanc", "Rosé", "Chenin Blanc"]
+    winePairings: ["Pinot Noir", "Sauvignon Blanc", "Rosé", "Chenin Blanc"],
+    isVegetarian: true
   },
   {
     id: "osso-buco",
@@ -596,7 +652,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Italian braised veal shanks",
     characteristics: ["Rich", "Tender", "Meaty", "Saffron"],
-    winePairings: ["Barolo", "Barbaresco", "Chianti", "Sangiovese"]
+    winePairings: ["Barolo", "Barbaresco", "Chianti", "Sangiovese"],
+    isVegetarian: false
   },
   {
     id: "mussels-marinara",
@@ -604,7 +661,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Mussels in tomato-wine broth",
     characteristics: ["Briny", "Tomato", "Garlic", "Brothy"],
-    winePairings: ["Pinot Grigio", "Vermentino", "Sauvignon Blanc", "Chianti"]
+    winePairings: ["Pinot Grigio", "Vermentino", "Sauvignon Blanc", "Chianti"],
+    isVegetarian: false
   },
   {
     id: "halloumi",
@@ -612,7 +670,8 @@ export const foods: Food[] = [
     category: "Cheese",
     description: "Grilled Cypriot cheese with high melting point",
     characteristics: ["Salty", "Grilled", "Chewy", "Savory"],
-    winePairings: ["Rosé", "Sauvignon Blanc", "Pinot Grigio", "Xinomavro"]
+    winePairings: ["Rosé", "Sauvignon Blanc", "Pinot Grigio", "Xinomavro"],
+    isVegetarian: true
   },
   {
     id: "crab-cakes",
@@ -620,7 +679,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "Pan-fried cakes of crab meat and breading",
     characteristics: ["Sweet Crab", "Crispy", "Rich", "Delicate"],
-    winePairings: ["Chardonnay", "Sparkling Wine", "Sauvignon Blanc", "Viognier"]
+    winePairings: ["Chardonnay", "Sparkling Wine", "Sauvignon Blanc", "Viognier"],
+    isVegetarian: false
   },
   {
     id: "lentil-soup",
@@ -628,7 +688,8 @@ export const foods: Food[] = [
     category: "Soup",
     description: "Hearty soup with lentils and vegetables",
     characteristics: ["Hearty", "Earthy", "Comforting", "Vegetarian"],
-    winePairings: ["Pinot Noir", "Grenache", "Chardonnay", "Rosé"]
+    winePairings: ["Côtes du Rhône", "Pinot Noir", "Grenache", "Chardonnay", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "pizza-margherita",
@@ -636,7 +697,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Classic Italian pizza with tomato, mozzarella, basil",
     characteristics: ["Tomato", "Cheesy", "Herbal", "Simple"],
-    winePairings: ["Chianti", "Sangiovese", "Barbera", "Lambrusco"]
+    winePairings: ["Zinfandel", "Chianti", "Sangiovese", "Barbera", "Lambrusco"],
+    isVegetarian: true
   },
   {
     id: "cornish-hen",
@@ -644,7 +706,8 @@ export const foods: Food[] = [
     category: "Poultry",
     description: "Small, tender game bird",
     characteristics: ["Tender", "Mild", "Small Portion", "Versatile"],
-    winePairings: ["Pinot Noir", "Chardonnay", "Rosé", "Grenache"]
+    winePairings: ["Pinot Noir", "Chardonnay", "Rosé", "Grenache"],
+    isVegetarian: false
   },
   {
     id: "gnocchi",
@@ -652,7 +715,8 @@ export const foods: Food[] = [
     category: "Pasta",
     description: "Italian potato dumplings",
     characteristics: ["Pillowy", "Starchy", "Versatile", "Comforting"],
-    winePairings: ["Pinot Grigio", "Chardonnay", "Barbera", "Rosé"]
+    winePairings: ["Pinot Grigio", "Chardonnay", "Barbera", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "cassoulet",
@@ -660,7 +724,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "French bean stew with various meats",
     characteristics: ["Hearty", "Rich", "Beany", "Comforting"],
-    winePairings: ["Syrah", "Grenache", "Merlot", "Côtes du Rhône"]
+    winePairings: ["Côtes du Rhône", "Syrah", "Grenache", "Merlot"],
+    isVegetarian: false
   },
   {
     id: "falafel",
@@ -668,7 +733,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "Deep-fried chickpea balls",
     characteristics: ["Crispy", "Herbal", "Spiced", "Vegetarian"],
-    winePairings: ["Rosé", "Crisp White", "Light Red", "Sparkling"]
+    winePairings: ["Rosé", "Crisp White", "Light Red", "Sparkling"],
+    isVegetarian: true
   },
   {
     id: "stuffed-peppers",
@@ -676,7 +742,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "Bell peppers filled with rice and meat or vegetables",
     characteristics: ["Vegetal", "Savory", "Comforting", "Versatile"],
-    winePairings: ["Zinfandel", "Merlot", "Chardonnay", "Rosé"]
+    winePairings: ["Zinfandel", "Merlot", "Chardonnay", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "bouillabaisse",
@@ -684,7 +751,8 @@ export const foods: Food[] = [
     category: "Seafood",
     description: "French fish stew with saffron and herbs",
     characteristics: ["Seafood Medley", "Saffron", "Brothy", "Complex"],
-    winePairings: ["Rosé", "Viognier", "Grenache", "Sauvignon Blanc"]
+    winePairings: ["Rosé", "Viognier", "Grenache", "Sauvignon Blanc"],
+    isVegetarian: false
   },
   {
     id: "carnitas",
@@ -692,7 +760,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Mexican slow-cooked pulled pork",
     characteristics: ["Porky", "Crispy", "Savory", "Fatty"],
-    winePairings: ["Zinfandel", "Grenache", "Tempranillo", "Malbec"]
+    winePairings: ["Zinfandel", "Grenache", "Tempranillo", "Malbec"],
+    isVegetarian: false
   },
   {
     id: "spanakopita",
@@ -700,7 +769,8 @@ export const foods: Food[] = [
     category: "Vegetarian",
     description: "Greek spinach and feta pie in phyllo dough",
     characteristics: ["Savory", "Spinach", "Feta", "Flaky"],
-    winePairings: ["Assyrtiko", "Rosé", "Sauvignon Blanc", "Pinot Grigio"]
+    winePairings: ["Assyrtiko", "Rosé", "Sauvignon Blanc", "Pinot Grigio"],
+    isVegetarian: true
   },
   {
     id: "fried-chicken",
@@ -708,7 +778,8 @@ export const foods: Food[] = [
     category: "Poultry",
     description: "Crispy, juicy fried poultry",
     characteristics: ["Crispy", "Juicy", "Savory", "Comforting"],
-    winePairings: ["Champagne", "Sparkling Rosé", "Chardonnay", "Zinfandel"]
+    winePairings: ["Champagne", "Sparkling Rosé", "Chardonnay", "Zinfandel"],
+    isVegetarian: false
   },
   {
     id: "gazpacho",
@@ -716,7 +787,8 @@ export const foods: Food[] = [
     category: "Soup",
     description: "Cold Spanish tomato soup",
     characteristics: ["Cold", "Tomato", "Refreshing", "Vegetal"],
-    winePairings: ["Fino Sherry", "Albariño", "Rosé", "Sauvignon Blanc"]
+    winePairings: ["Fino Sherry", "Albariño", "Rosé", "Sauvignon Blanc"],
+    isVegetarian: true
   },
   {
     id: "chili-con-carne",
@@ -724,7 +796,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Spicy meat and bean stew",
     characteristics: ["Spicy", "Hearty", "Beany", "Rich"],
-    winePairings: ["Zinfandel", "Malbec", "Syrah", "Petite Sirah"]
+    winePairings: ["Zinfandel", "Malbec", "Syrah", "Petite Sirah"],
+    isVegetarian: false
   },
   {
     id: "caprese-salad",
@@ -732,7 +805,8 @@ export const foods: Food[] = [
     category: "Salads",
     description: "Italian salad with tomato, mozzarella, and basil",
     characteristics: ["Fresh", "Simple", "Creamy", "Herbal"],
-    winePairings: ["Pinot Grigio", "Rosé", "Vermentino", "Prosecco"]
+    winePairings: ["Pinot Grigio", "Rosé", "Vermentino", "Prosecco"],
+    isVegetarian: true
   },
   {
     id: "beef-wellington",
@@ -740,7 +814,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Beef tenderloin wrapped in pastry",
     characteristics: ["Luxurious", "Rich", "Buttery", "Savory"],
-    winePairings: ["Cabernet Sauvignon", "Merlot", "Pinot Noir", "Bordeaux"]
+    winePairings: ["Cabernet Sauvignon", "Merlot", "Pinot Noir", "Bordeaux"],
+    isVegetarian: false
   },
   {
     id: "hummus",
@@ -748,7 +823,8 @@ export const foods: Food[] = [
     category: "Appetizer",
     description: "Creamy chickpea and tahini dip",
     characteristics: ["Creamy", "Nutty", "Savory", "Versatile"],
-    winePairings: ["Rosé", "Sparkling Wine", "Crisp White", "Light Red"]
+    winePairings: ["Rosé", "Sparkling Wine", "Crisp White", "Light Red"],
+    isVegetarian: true
   },
   {
     id: "pulled-pork",
@@ -756,7 +832,8 @@ export const foods: Food[] = [
     category: "Meat",
     description: "Slow-cooked shredded pork in barbecue sauce",
     characteristics: ["Sweet", "Smoky", "Tender", "Messy"],
-    winePairings: ["Zinfandel", "Grenache", "Syrah", "Malbec"]
+    winePairings: ["Zinfandel", "Grenache", "Syrah", "Malbec"],
+    isVegetarian: false
   },
   {
     id: "risotto",
@@ -764,7 +841,8 @@ export const foods: Food[] = [
     category: "Rice",
     description: "Creamy Italian rice dish",
     characteristics: ["Creamy", "Rich", "Starchy", "Versatile"],
-    winePairings: ["Pinot Grigio", "Chardonnay", "Barbera", "Soave"]
+    winePairings: ["Pinot Grigio", "Chardonnay", "Barbera", "Soave"],
+    isVegetarian: true
   },
   {
     id: "caesar-salad",
@@ -772,7 +850,8 @@ export const foods: Food[] = [
     category: "Salads",
     description: "Romaine lettuce with creamy dressing and croutons",
     characteristics: ["Creamy", "Garlicky", "Crunchy", "Anchovy"],
-    winePairings: ["Sauvignon Blanc", "Chardonnay", "Pinot Grigio", "Sparkling"]
+    winePairings: ["Sauvignon Blanc", "Chardonnay", "Pinot Grigio", "Sparkling"],
+    isVegetarian: false
   },
   {
     id: "shepherds-pie",
@@ -780,7 +859,8 @@ export const foods: Food[] = [
     category: "Comfort Food",
     description: "Ground meat with vegetable gravy and mashed potato topping",
     characteristics: ["Comforting", "Savory", "Hearty", "Mashed Potato"],
-    winePairings: ["Syrah", "Merlot", "Pinot Noir", "Zinfandel"]
+    winePairings: ["Syrah", "Merlot", "Pinot Noir", "Zinfandel"],
+    isVegetarian: false
   },
   {
     id: "stuffed-mushrooms",
@@ -788,7 +868,8 @@ export const foods: Food[] = [
     category: "Appetizer",
     description: "Mushroom caps filled with cheese and breadcrumbs",
     characteristics: ["Earthy", "Cheesy", "Savory", "Bite-sized"],
-    winePairings: ["Pinot Noir", "Chardonnay", "Sparkling Wine", "Rosé"]
+    winePairings: ["Pinot Noir", "Chardonnay", "Sparkling Wine", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "fish-tacos",
@@ -796,7 +877,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Grilled or fried fish in soft tortillas with toppings",
     characteristics: ["Fresh", "Zesty", "Light", "Versatile"],
-    winePairings: ["Albariño", "Sauvignon Blanc", "Rosé", "Pinot Grigio"]
+    winePairings: ["Champagne", "Albariño", "Sauvignon Blanc", "Rosé", "Pinot Grigio"],
+    isVegetarian: false
   },
   {
     id: "bruschetta",
@@ -804,7 +886,8 @@ export const foods: Food[] = [
     category: "Appetizer",
     description: "Toasted bread topped with tomatoes and basil",
     characteristics: ["Tomato", "Garlic", "Fresh", "Crunchy"],
-    winePairings: ["Chianti", "Prosecco", "Sauvignon Blanc", "Rosé"]
+    winePairings: ["Chianti", "Prosecco", "Sauvignon Blanc", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "coq-au-vin",
@@ -812,7 +895,8 @@ export const foods: Food[] = [
     category: "Poultry",
     description: "French chicken braised in red wine",
     characteristics: ["Wine-infused", "Savory", "Rich", "Herbal"],
-    winePairings: ["Pinot Noir", "Burgundy", "Merlot", "Gamay"]
+    winePairings: ["Pinot Noir", "Burgundy", "Merlot", "Gamay"],
+    isVegetarian: false
   },
   {
     id: "stuffed-dates",
@@ -820,7 +904,8 @@ export const foods: Food[] = [
     category: "Appetizer",
     description: "Dates filled with cheese or nuts",
     characteristics: ["Sweet", "Rich", "Chewy", "Versatile"],
-    winePairings: ["Port", "Sherry", "Moscato", "Rosé"]
+    winePairings: ["Port", "Sherry", "Moscato", "Rosé"],
+    isVegetarian: true
   },
   {
     id: "tempura",
@@ -828,7 +913,8 @@ export const foods: Food[] = [
     category: "Global Cuisine",
     description: "Japanese battered and fried vegetables or seafood",
     characteristics: ["Crispy", "Light", "Greasy", "Delicate"],
-    winePairings: ["Sauvignon Blanc", "Sparkling Wine", "Riesling", "Pinot Grigio"]
+    winePairings: ["Sauvignon Blanc", "Sparkling Wine", "Riesling", "Pinot Grigio"],
+    isVegetarian: true
   },
   {
     id: "meatloaf",
@@ -836,7 +922,8 @@ export const foods: Food[] = [
     category: "Comfort Food",
     description: "Ground meat baked with seasonings",
     characteristics: ["Savory", "Hearty", "Comforting", "Simple"],
-    winePairings: ["Zinfandel", "Merlot", "Syrah", "Cabernet Sauvignon"]
+    winePairings: ["Zinfandel", "Merlot", "Syrah", "Cabernet Sauvignon"],
+    isVegetarian: false
   },
   {
     id: "greek-salad",
@@ -844,7 +931,8 @@ export const foods: Food[] = [
     category: "Salads",
     description: "Cucumber, tomato, feta, and olives with olive oil",
     characteristics: ["Fresh", "Salty", "Tangy", "Herbal"],
-    winePairings: ["Assyrtiko", "Rosé", "Sauvignon Blanc", "Pinot Gris"]
+    winePairings: ["Assyrtiko", "Rosé", "Sauvignon Blanc", "Pinot Gris"],
+    isVegetarian: true
   },
   {
     id: "fruit-platter",
@@ -852,7 +940,8 @@ export const foods: Food[] = [
     category: "Dessert",
     description: "Assorted fresh fruits with varying sweetness and acidity",
     characteristics: ["Sweet", "Fresh", "Acidic", "Light"],
-    winePairings: ["Moscato", "Prosecco", "Riesling", "Sparkling Rosé"]
+    winePairings: ["Moscato", "Prosecco", "Riesling", "Sparkling Rosé"],
+    isVegetarian: true
   },
   {
     id: "cheese-platter",
@@ -860,8 +949,99 @@ export const foods: Food[] = [
     category: "Cheese",
     description: "Assorted cheeses with varying textures and flavors",
     characteristics: ["Versatile", "Rich", "Savory", "Creamy"],
-    winePairings: ["Chardonnay", "Pinot Noir", "Cabernet Sauvignon", "Rosé", "Sparkling Wine"]
-  }
+    winePairings: ["Chardonnay", "Pinot Noir", "Cabernet Sauvignon", "Rosé", "Sparkling Wine"],
+    isVegetarian: true
+  },
+  {
+    id: "cauliflower-steak",
+    name: "Roasted Cauliflower Steak",
+    category: "Vegetarian",
+    isVegetarian: true,
+    description: "Caramelized and earthy roasted cauliflower",
+    characteristics: ["Earthy", "Nutty", "Caramelized"],
+    winePairings: ["Chardonnay", "Chenin Blanc", "Viognier", "Côtes du Rhône"]
+  },
+  {
+    id: "mushroom-risotto",
+    name: "Wild Mushroom Risotto",
+    category: "Vegetarian",
+    isVegetarian: true,
+    description: "Creamy rice with deep umami from wild mushrooms",
+    characteristics: ["Umami", "Creamy", "Earthy"],
+    winePairings: ["Pinot Noir", "Nebbiolo", "Chardonnay", "Côtes du Rhône"]
+  },
+  {
+    id: "shakshuka",
+    name: "Shakshuka",
+    category: "Vegetarian",
+    isVegetarian: true,
+    description: "Poached eggs in a spiced tomato and pepper sauce",
+    characteristics: ["Spicy", "Tomato", "Acidic", "Savory"],
+    winePairings: ["Rosé", "Sangiovese", "Barbera", "Grenache"]
+  },
+  {
+    id: "truffle-fries",
+    name: "Truffle Fries",
+    category: "Appetizer",
+    isVegetarian: true,
+    description: "Crispy fries with aromatic truffle oil and parmesan",
+    characteristics: ["Salty", "Earthy", "Crispy"],
+    winePairings: ["Champagne", "Prosecco", "English Sparkling"]
+  },
+  {
+    id: "lentil-stew",
+    name: "Hearty Lentil Stew",
+    category: "Vegetarian",
+    isVegetarian: true,
+    description: "Thick, earthy stew with herbs and root vegetables",
+    characteristics: ["Earthy", "Hearty", "Savory"],
+    winePairings: ["Côtes du Rhône", "Pinot Noir", "Merlot"]
+  },
+  {
+  id: "smoked-salmon-blini",
+  name: "Smoked Salmon Blini",
+  category: "Seafood",
+  description: "Thin pancakes topped with smoked salmon, crème fraîche, and dill",
+  characteristics: ["Smoky", "Creamy", "Rich", "Delicate"],
+  winePairings: ["English Sparkling", "Champagne", "Pinot Noir", "Chardonnay"],
+  isVegetarian: false
+},
+{
+  id: "fish-and-chips",
+  name: "Fish and Chips",
+  category: "Global Cuisine",
+  description: "British classic of beer-battered fish with crispy chips",
+  characteristics: ["Crispy", "Savory", "Greasy", "Comforting"],
+  winePairings: ["English Sparkling", "Champagne", "Albariño", "Pinot Gris"],
+  isVegetarian: false
+},
+{
+  id: "goats-cheese-tart",
+  name: "Goat's Cheese and Caramelized Onion Tart",
+  category: "Vegetarian",
+  description: "Flaky pastry with tangy goat cheese and sweet caramelized onions",
+  characteristics: ["Tangy", "Sweet", "Creamy", "Flaky"],
+  winePairings: ["English Sparkling", "Sauvignon Blanc", "Pinot Gris", "Rosé"],
+  isVegetarian: true
+},
+{
+  id: "scallops-bacon",
+  name: "Scallops with Pancetta",
+  category: "Seafood",
+  description: "Pan-seared scallops wrapped in crispy pancetta",
+  characteristics: ["Sweet", "Salty", "Rich", "Delicate"],
+  winePairings: ["English Sparkling", "Chardonnay", "White Burgundy", "Viognier"],
+  isVegetarian: false
+},
+{
+  id: "strawberry-pavlova",
+  name: "Strawberry Pavlova",
+  category: "Dessert",
+  description: "Light meringue with whipped cream and fresh strawberries",
+  characteristics: ["Sweet", "Crisp", "Creamy", "Fruity"],
+  winePairings: ["English Sparkling", "Moscato d'Asti", "Prosecco", "Demi-Sec Champagne"],
+  isVegetarian: true
+}
 ];
 
 export function getWineById(id: string): Wine | undefined {

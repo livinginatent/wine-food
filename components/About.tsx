@@ -1,6 +1,8 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { ArrowLeft, Heart, Wine, UtensilsCrossed, BookOpen } from "lucide-react";
+import { IoIosWine } from "react-icons/io";
 
 interface AboutProps {
   onBack: () => void;
@@ -72,7 +74,7 @@ export default function About({ onBack }: AboutProps) {
               <div className="border border-primary/20 bg-white/50 rounded-sm p-6 space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="rounded-full bg-primary/10 p-3">
-                    <Wine className="h-6 w-6 text-primary" />
+                    <IoIosWine  className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="font-playfair text-xl font-medium text-primary">
                     Wine Selection

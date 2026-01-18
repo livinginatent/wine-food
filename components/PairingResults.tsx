@@ -2,6 +2,7 @@
 
 import { ArrowLeft, Wine, UtensilsCrossed } from "lucide-react";
 import { getWineById, getFoodById, getFoodPairingsForWine, getWinePairingsForFood } from "@/lib/pairings";
+import { IoIosWine } from "react-icons/io";
 
 interface PairingResultsProps {
   mode: "wine" | "food";
@@ -54,7 +55,7 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
             <div className="flex items-start gap-6">
               <div className={`rounded-full p-4 ${mode === "wine" ? "bg-primary/10" : "bg-secondary/20"}`}>
                 {mode === "wine" ? (
-                  <Wine className="h-8 w-8 text-primary" />
+                  <IoIosWine className="h-8 w-8 text-primary" />
                 ) : (
                   <UtensilsCrossed className="h-8 w-8 text-secondary" />
                 )}
@@ -154,7 +155,7 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
                   >
                     <div className="flex items-start gap-4">
                       <div className="rounded-full bg-primary/10 p-3">
-                        <Wine className="h-5 w-5 text-primary" />
+                        <IoIosWine className="h-5 w-5 text-primary" />
                       </div>
                       <div className="flex-1 space-y-2">
                         <h4 className="font-playfair text-xl font-medium text-primary">
