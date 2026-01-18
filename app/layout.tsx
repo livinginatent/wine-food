@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -100,9 +101,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="9A-e8MHXbixJnBE4DgScHL7jwVTS4yhh3KojmYIC1EM" />
+      </head>
       <body
         className={`${playfair.variable} ${inter.variable} antialiased`}
       >
+        <GoogleAnalytics gaId="G-DSFBE6TZ20" />
         <Script
           id="structured-data"
           type="application/ld+json"
