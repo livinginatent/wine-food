@@ -105,15 +105,15 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center px-6 pt-12 pb-8 text-center">
         <div className="max-w-4xl space-y-6">
-          <h1 className="font-playfair text-6xl font-light tracking-wide text-primary md:text-7xl lg:text-8xl">
-            Perfect Pairings
+          <h1 className="font-playfair text-5xl font-light tracking-wide text-primary md:text-5xl lg:text-7xl">
+            Perfect Wine Food Pairing
           </h1>
           <div className="mx-auto h-px w-24 bg-secondary"></div>
           <p className="font-inter text-xl font-light leading-relaxed text-accent/80 md:text-2xl">
-            Discover the art of pairing wine and food
+            Discover the art of wine pairing
           </p>
           <p className="font-inter text-base font-light text-accent/60 md:text-lg">
-            Let us guide you to create harmonious culinary experiences
+            Explore expert wine food pairing recommendations and learn the principles of perfect wine and food combinations
           </p>
           {/* Pick for Me Button */}
  {/*          <div className="pt-4">
