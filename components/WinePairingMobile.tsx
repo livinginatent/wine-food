@@ -190,10 +190,15 @@ export default function WinePairingMobile() {
 
   // Calculate paths when food is selected
   useEffect(() => {
-    if (!selectedFood || !columnsRef.current || activePairings.length === 0) {
-      setPathData([]);
-      return;
+    if (!selectedFood || activePairings.length === 0) {
+      // Use setTimeout to avoid synchronous setState
+      const timeoutId = setTimeout(() => {
+        setPathData([]);
+      }, 0);
+      return () => clearTimeout(timeoutId);
     }
+
+    if (!columnsRef.current) return;
 
     // Use setTimeout to ensure DOM has updated after render
     const timeoutId = setTimeout(() => {
@@ -252,7 +257,7 @@ export default function WinePairingMobile() {
       {/* Dual Column Layout */}
       <div ref={columnsRef} className="flex h-[calc(100vh-100px)] relative">
         {/* SVG Overlay for connection lines */}
-        {pathData.length > 0 && containerRef.current && (
+        {pathData.length > 0 && (
           <svg 
             className="absolute inset-0 pointer-events-none z-10" 
             style={{ 
@@ -299,7 +304,7 @@ export default function WinePairingMobile() {
               return (
                 <motion.div
                   key={food.id}
-                  ref={(el) => (foodRefs.current[food.id] = el)}
+                  ref={(el) => { foodRefs.current[food.id] = el; }}
                   onClick={() => {
                     setSelectedFood(isSelected ? null : food.id);
                     setSelectedWine(null);
@@ -341,7 +346,7 @@ export default function WinePairingMobile() {
               return (
                 <motion.div
                   key={wine.id}
-                  ref={(el) => (wineRefs.current[wine.id] = el)}
+                  ref={(el) => { wineRefs.current[wine.id] = el; }}
                   onClick={() => setSelectedWine(wine)}
                   className={`relative flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
                     isActive || isSelected
