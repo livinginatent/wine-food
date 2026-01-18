@@ -845,6 +845,22 @@ export const foods: Food[] = [
     description: "Cucumber, tomato, feta, and olives with olive oil",
     characteristics: ["Fresh", "Salty", "Tangy", "Herbal"],
     winePairings: ["Assyrtiko", "Rosé", "Sauvignon Blanc", "Pinot Gris"]
+  },
+  {
+    id: "fruit-platter",
+    name: "Fruit Platter",
+    category: "Dessert",
+    description: "Assorted fresh fruits with varying sweetness and acidity",
+    characteristics: ["Sweet", "Fresh", "Acidic", "Light"],
+    winePairings: ["Moscato", "Prosecco", "Riesling", "Sparkling Rosé"]
+  },
+  {
+    id: "cheese-platter",
+    name: "Cheese Platter",
+    category: "Cheese",
+    description: "Assorted cheeses with varying textures and flavors",
+    characteristics: ["Versatile", "Rich", "Savory", "Creamy"],
+    winePairings: ["Chardonnay", "Pinot Noir", "Cabernet Sauvignon", "Rosé", "Sparkling Wine"]
   }
 ];
 

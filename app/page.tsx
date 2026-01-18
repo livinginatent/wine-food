@@ -202,8 +202,24 @@ export default function Home() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
           </button>
+          
           </div>
-
+      <div className="flex justify-center pt-4">
+            <Link
+              href="/moods"
+              onMouseEnter={() => setHoveredOption("moods")}
+              onMouseLeave={() => setHoveredOption(null)}
+              className="group relative overflow-hidden rounded-sm border border-secondary/40 bg-secondary/10 px-8 py-4 transition-all duration-500 hover:border-secondary/60 hover:bg-secondary/20 hover:shadow-lg"
+            >
+              <div className="relative z-10 flex items-center gap-3">
+             
+                <span className="font-playfair text-lg font-medium text-accent">
+                  Mood-Based Pairings
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            </Link>
+          </div>
           {/* Guide Button */}
           <div className="flex justify-center pt-4">
             <button
@@ -227,17 +243,27 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             </button>
           </div>
+
+          {/* Mood-Based Pairings Button */}
+    
         </div>
       </section>
 
       {/* Footer */}
       <footer className="border-t border-primary/10 px-6 py-8">
-        <div className="mx-auto max-w-4xl flex items-center justify-center">
+        <div className="mx-auto max-w-4xl flex items-center justify-center gap-6">
           <Link
             href="/about"
             className="font-inter text-sm font-light text-accent/60 transition-colors hover:text-accent"
           >
             About
+          </Link>
+          <span className="text-accent/30">•</span>
+          <Link
+            href="/moods"
+            className="font-inter text-sm font-light text-accent/60 transition-colors hover:text-accent"
+          >
+            Mood-Based Pairings
           </Link>
         </div>
       </footer>
