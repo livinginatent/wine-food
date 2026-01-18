@@ -10,6 +10,7 @@ import PairingGuide from "@/components/PairingGuide";
 import { IoIosWine } from "react-icons/io";
 import { wines, getFoodPairingsForWine } from "@/lib/pairings";
 import { AiOutlineRead } from "react-icons/ai";
+import { BarChart3 } from "lucide-react";
 
 type View = "home" | "wine-selection" | "food-selection" | "pairing-results" | "guide";
 
@@ -229,19 +230,31 @@ export default function Home() {
               className="group relative overflow-hidden rounded-sm border border-accent/30 bg-white/50 px-8 py-4 transition-all duration-500 hover:border-accent/50 hover:shadow-lg"
             >
               <div className="relative z-10 flex items-center gap-3">
-                <div className="rounded-full bg-accent/10 p-2 transition-transform duration-300 group-hover:scale-110">
-                  <AiOutlineRead 
-                    className={`h-5 w-5 transition-colors duration-300 ${
-                      hoveredOption === "guide" ? "text-accent" : "text-accent/70"
-                    }`}
-                  />
-                </div>
+            
                 <span className="font-playfair text-lg font-medium text-accent">
                   Teach me how to pair wine and food
                 </span>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             </button>
+          </div>
+
+          {/* Pairing Chart Button */}
+          <div className="flex justify-center pt-4">
+            <Link
+              href="/chart"
+              onMouseEnter={() => setHoveredOption("chart")}
+              onMouseLeave={() => setHoveredOption(null)}
+              className="group relative overflow-hidden rounded-sm border border-secondary/30 bg-white/50 px-8 py-4 transition-all duration-500 hover:border-secondary/50 hover:shadow-lg"
+            >
+              <div className="relative z-10 flex items-center gap-3">
+             
+                <span className="font-playfair text-lg font-medium text-accent">
+                  Interactive Pairing Chart
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            </Link>
           </div>
 
           {/* Mood-Based Pairings Button */}
@@ -264,6 +277,13 @@ export default function Home() {
             className="font-inter text-sm font-light text-accent/60 transition-colors hover:text-accent"
           >
             Mood-Based Pairings
+          </Link>
+          <span className="text-accent/30">•</span>
+          <Link
+            href="/chart"
+            className="font-inter text-sm font-light text-accent/60 transition-colors hover:text-accent"
+          >
+            Interactive Pairing Chart
           </Link>
         </div>
       </footer>
