@@ -20,3 +20,59 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+/* Leaflet map customizations */
+.wine-atlas-map .leaflet-container {
+  background-color: var(--color-background);
+}
+
+.wine-atlas-map .leaflet-popup-content-wrapper {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-primary);
+}
+
+.wine-atlas-map .leaflet-popup-tip {
+  background-color: var(--color-background);
+  border: 2px solid var(--color-primary);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+/* Custom wine marker styling */
+.custom-wine-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.custom-wine-marker svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Glowing ring marker styling */
+.glowing-ring-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.glowing-ring-marker svg {
+  filter: drop-shadow(0 0 8px currentColor);
+  transition: transform 0.2s ease;
+}
+
+.glowing-ring-marker:hover svg {
+  transform: scale(1.15);
+}
