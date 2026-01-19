@@ -62,9 +62,11 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
               </div>
               <div className="flex-1 space-y-4">
                 <div>
-                  <h2 className="font-playfair text-4xl font-medium text-primary">
-                    {selectedWine?.name || selectedFood?.name}
-                  </h2>
+                  <h1 className="font-playfair text-4xl font-medium text-primary">
+                    {mode === "wine" 
+                      ? `${selectedWine?.name} Food Pairings`
+                      : `${selectedFood?.name} Wine Pairings`}
+                  </h1>
                   <p className="mt-2 font-inter text-base font-light text-secondary">
                     {selectedWine?.type || selectedFood?.category}
                   </p>
@@ -96,9 +98,9 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
       <section className="px-6 pb-16">
         <div className="mx-auto max-w-4xl space-y-8">
           <div className="text-center">
-            <h3 className="font-playfair text-3xl font-medium text-primary">
+            <h2 className="font-playfair text-3xl font-medium text-primary">
               Perfect Pairings
-            </h3>
+            </h2>
             <div className="mx-auto mt-3 h-px w-24 bg-secondary"></div>
           </div>
 

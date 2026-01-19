@@ -79,8 +79,8 @@ const foodCategories: FoodCategory[] = [
   },
   { 
     id: "rich-fish", 
-    name: "Rich Fish", 
-    icon: "🐠", 
+    name: "Seafood", 
+    icon: "🍤", 
     position: { x: 800, y: 80 },
     tags: ["oily", "fatty", "meaty", "umami", "luxurious"]
   },
