@@ -38,7 +38,7 @@ export default function GrapeCard({ grape, onClose, initialOpen = false, onGrape
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end pointer-events-none">
+    <div className="fixed inset-0 z-50 flex items-end pointer-events-none px-8">
       {/* Backdrop */}
       <AnimatePresence>
         {isOpen && (

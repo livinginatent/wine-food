@@ -1,6 +1,6 @@
 "use client";
 
-import { UtensilsCrossed } from "lucide-react";
+import { UtensilsCrossed, Grape } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { IoIosWine } from "react-icons/io";
@@ -161,6 +161,30 @@ export default function Home() {
                 </span>
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            </Link>
+          </div>
+
+          {/* Wine Grapes Button */}
+          <div className="flex justify-center pt-4">
+            <Link
+              href="/grapes"
+              onMouseEnter={() => setHoveredOption("grapes")}
+              onMouseLeave={() => setHoveredOption(null)}
+              className="group relative overflow-hidden rounded-sm border border-primary/30 bg-white/50 px-8 py-4 transition-all duration-500 hover:border-primary/50 hover:shadow-lg"
+            >
+              <div className="relative z-10 flex items-center gap-3">
+                <div className="rounded-full bg-primary/10 p-2 transition-transform duration-300 group-hover:scale-110">
+                  <Grape 
+                    className={`h-5 w-5 transition-colors duration-300 ${
+                      hoveredOption === "grapes" ? "text-primary" : "text-primary/70"
+                    }`}
+                  />
+                </div>
+                <span className="font-playfair text-lg font-medium text-accent">
+                  Explore Wine Grapes
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
             </Link>
           </div>
 
