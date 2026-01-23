@@ -3,6 +3,9 @@ export interface Wine {
   name: string;
   type: string;
   description: string;
+  // Optional context to add more specificity and terroir
+  origin?: string; // e.g. "Bordeaux, France" or "Marlborough, New Zealand"
+  regionId?: string; // optional link to an entry in wineRegions
   characteristics: string[];
   foodPairings: string[];
 }
@@ -22,304 +25,335 @@ export const wines: Wine[] = [
     id: "cabernet-sauvignon",
     name: "Cabernet Sauvignon",
     type: "Red Wine",
-    description: "Full-bodied with rich tannins and dark fruit flavors",
+    origin: "Bordeaux, France & Napa Valley, USA",
+    description: "Full-bodied, structured and cassis-driven, with firm tannins, dark fruit and often cedar or graphite from oak and bottle age.",
     characteristics: ["Bold", "Tannic", "Dark Fruit", "Oak"],
-    foodPairings: ["Grilled Steak", "Aged Cheddar", "Venison", "Beef Wellington", "Meatloaf", "Cheese Platter", "Roast Lamb", "Aged Cheese", "Dark Chocolate"]
+    foodPairings: ["Grilled Steak", "Aged Cheddar", "Venison", "Beef Wellington"]
   },
   {
     id: "champagne",
     name: "Champagne",
     type: "Sparkling Wine",
-    description: "The gold standard of bubbles; yeasty, toasty, and high acidity",
+    description: "The gold standard of sparkling wine; yeasty, toasty, and high acidity. Made via the traditional method in its namesake French region.",
     characteristics: ["Toasty", "Brioche", "High Acidity", "Citrus"],
-    foodPairings: ["Goat Cheese", "Smoked Salmon Blini", "Fish and Chips", "Fried Chicken", "Oysters", "Truffle Fries", "Triple Cream Cheese", "Fish Tacos"]
+    foodPairings: ["Oysters", "Goat Cheese", "Smoked Salmon Blini", "Fried Chicken"]
   },
   {
     id: "english-sparkling",
     name: "English Sparkling",
     type: "Sparkling Wine",
-    description: "Crisp and lean with high acidity, often showing green apple and elderflower",
+    description: "Crisp and lean with high acidity, often showing green apple and elderflower. Rivals Champagne in quality due to similar cool-climate terroir.",
     characteristics: ["Green Apple", "High Acidity", "Lean", "Mineral"],
-    foodPairings: ["Asparagus", "Truffle Fries", "Fish and Chips", "Strawberry Pavlova", "Scallops with Pancetta", "Goat's Cheese and Caramelized Onion Tart", "Smoked Salmon Blini"]
+    foodPairings: ["Asparagus", "Fish and Chips", "Scallops with Pancetta", "Goat's Cheese Tart"]
   },
   {
     id: "cotes-du-rhone",
     name: "Côtes du Rhône",
     type: "Red Wine",
-    description: "Classic French blend (usually Grenache, Syrah, Mourvèdre); earthy and peppery",
+    origin: "Rhône Valley, France",
+    description: "Classic French blend (usually Grenache, Syrah, Mourvèdre); earthy, peppery, and medium-bodied.",
     characteristics: ["Earthy", "Peppery", "Red Fruit", "Medium-bodied"],
-    foodPairings: ["Cassoulet", "Roasted Cauliflower Steak", "Wild Mushroom Risotto", "Roasted Root Veggies", "Ratatouille", "Lamb Chops", "Lentil Soup", "Mushroom Risotto", "Hearty Lentil Stew"]
+    foodPairings: ["Cassoulet", "Lamb Chops", "Mushroom Risotto", "Ratatouille"]
   },
   {
     id: "chardonnay",
     name: "Chardonnay",
     type: "White Wine",
-    description: "Creamy and buttery with notes of apple and vanilla",
+    origin: "Burgundy, France & cool-climate New World regions",
+    description: "A versatile grape that ranges from lean, mineral-driven wines to rich, buttery styles. Often features apple, citrus, and vanilla from oak aging.",
     characteristics: ["Buttery", "Creamy", "Oak", "Citrus"],
-    foodPairings: ["Salmon", "Mushrooms", "Aged Cheddar", "Shrimp Scampi", "Quiche Lorraine", "Cornish Game Hen", "Gnocchi", "Lentil Soup", "Crab Cakes", "Stuffed Mushrooms", "Fried Chicken", "Cheese Platter", "Wild Mushroom Risotto", "Smoked Salmon Blini", "Scallops with Pancetta", "Lobster", "Roast Chicken", "Creamy Pasta", "Brie Cheese"]
+    foodPairings: ["Lobster", "Roast Chicken", "Creamy Pasta", "Brie Cheese"]
   },
   {
     id: "pinot-noir",
     name: "Pinot Noir",
     type: "Red Wine",
-    description: "Elegant and light-bodied with red fruit and earthy notes",
+    origin: "Burgundy, France; Oregon & New Zealand",
+    description: "Silky, medium‑light bodied red with red cherry, cranberry and forest‑floor notes, more about perfume and texture than power.",
     characteristics: ["Light", "Earthy", "Red Fruit", "Elegant"],
-    foodPairings: ["Salmon", "Roast Chicken", "Pork Belly", "Pork Tenderloin", "Cornish Game Hen", "Venison", "Beef Bourguignon", "Coq au Vin", "Roasted Beet Salad", "Lentil Soup", "Wild Mushroom Risotto", "Hearty Lentil Stew", "Duck", "Mushrooms", "Goat Cheese"]
+    foodPairings: ["Salmon", "Duck", "Mushrooms", "Roast Chicken"]
   },
   {
     id: "sauvignon-blanc",
     name: "Sauvignon Blanc",
     type: "White Wine",
-    description: "Crisp and refreshing with herbaceous and citrus notes",
+    origin: "Loire Valley, France & Marlborough, New Zealand",
+    description: "High‑acid and aromatic, ranging from mineral and citrusy to intensely grassy and tropical; think lime, gooseberry and fresh herbs.",
     characteristics: ["Crisp", "Herbaceous", "Citrus", "Mineral"],
-    foodPairings: ["Oysters", "Lobster", "Creamy Pasta", "Ceviche", "Shrimp Scampi", "Roasted Beet Salad", "Bouillabaisse", "Grilled Halloumi", "Crab Cakes", "Caesar Salad", "Gazpacho", "Bruschetta", "Tempura", "Greek Salad", "Goat's Cheese and Caramelized Onion Tart", "Spanakopita", "Goat Cheese", "Seafood", "Salads", "Asparagus"]
+    foodPairings: ["Goat Cheese", "Oysters", "Asparagus", "Seafood Salads"]
   },
   {
     id: "merlot",
     name: "Merlot",
     type: "Red Wine",
-    description: "Smooth and velvety with plum and cherry flavors",
+    origin: "Right Bank Bordeaux, France & California, USA",
+    description: "Plush and plummy with soft tannins, offering black cherry, cocoa and gentle spice—rounder and more approachable than many Cabernets.",
     characteristics: ["Smooth", "Plum", "Cherry", "Soft Tannins"],
-    foodPairings: ["Grilled Steak", "Dark Chocolate", "BBQ Ribs", "Pork Belly", "Pork Tenderloin", "Pulled Pork Sandwich", "Creamy Pasta", "Beef Bourguignon", "Duck Breast", "Venison", "Mushrooms", "Hearty Lentil Stew", "Pork", "Pasta", "Tomato-based Dishes", "Soft Cheese"]
+    foodPairings: ["Grilled Steak", "Pork", "Pasta", "Soft Cheese"]
   },
   {
     id: "riesling",
     name: "Riesling",
     type: "White Wine",
-    description: "Aromatic with notes of peach, apricot, and honey",
-    characteristics: ["Aromatic", "Sweet", "Acidic", "Fruity"],
-    foodPairings: ["Goat Cheese", "Blue Cheese", "Roast Chicken", "Spicy Curry", "Fruit Tart", "Tempura", "Fruit Platter", "Spicy Asian Cuisine", "Pork", "Duck", "Fruit Desserts"]
+    origin: "Mosel, Germany & Clare/Eden Valley, Australia",
+    description: "Highly aromatic and driven by acidity, from bone‑dry to lusciously sweet; expect lime, peach, jasmine and sometimes a subtle petrol note with age.",
+    characteristics: ["Aromatic", "Acidic", "Fruity", "Versatile"],
+    foodPairings: ["Spicy Curry", "Pork", "Duck", "Goat Cheese"]
   },
   {
     id: "syrah",
     name: "Syrah",
     type: "Red Wine",
-    description: "Bold and spicy with dark fruit and pepper notes",
+    origin: "Northern Rhône, France & Barossa Valley, Australia (as Shiraz)",
+    description: "Dark, savory and peppery, with blackberry, black olive and smoked meat notes. Australian Shiraz tends to be riper and more full-bodied.",
     characteristics: ["Bold", "Spicy", "Pepper", "Dark Fruit"],
-    foodPairings: ["Grilled Steak", "Lamb Chops", "Duck Breast", "Beef Bourguignon", "Venison", "Cassoulet", "Chili Con Carne", "Shepherd's Pie", "Meatloaf", "BBQ Ribs", "BBQ", "Game Meat", "Spicy Dishes", "Hard Cheese"]
+    foodPairings: ["Grilled Steak", "BBQ", "Game Meat", "Hard Cheese"]
   },
   {
     id: "pinot-grigio",
     name: "Pinot Grigio",
     type: "White Wine",
-    description: "Light and crisp with citrus and green apple flavors",
+    origin: "Veneto, Italy & Alsace (as Pinot Gris)",
+    description: "Typically light, dry and zesty with lemon, green apple and a clean, refreshing finish—built for refreshment.",
     characteristics: ["Light", "Crisp", "Citrus", "Dry"],
-    foodPairings: ["Salmon", "Creamy Pasta", "Sushi & Sashimi", "Asparagus", "Shrimp Scampi", "Mussels Marinara", "Gnocchi", "Caesar Salad", "Fish Tacos", "Spanakopita", "Caprese Salad", "Light Seafood", "Salads", "Poultry", "Fresh Cheese"]
+    foodPairings: ["Light Seafood", "Salads", "Poultry", "Fresh Cheese"]
   },
   {
     id: "malbec",
     name: "Malbec",
     type: "Red Wine",
-    description: "Deep purple, full-bodied wine with plum and black cherry flavors",
+    origin: "Mendoza, Argentina",
+    description: "Deeply colored and fruit‑forward with ripe plum, blackberry and a plush texture, often showing hints of cocoa and violet.",
     characteristics: ["Jammy", "Plum", "Smooth Tannins", "Velvety"],
-    foodPairings: ["Grilled Steak", "Tacos", "Aged Cheddar", "Carnitas", "Pulled Pork Sandwich", "Chili Con Carne", "BBQ Ribs", "Lamb Chops", "Hard Cheese"]
+    foodPairings: ["Grilled Steak", "Lamb Chops", "Hard Cheese", "BBQ"]
   },
   {
     id: "zinfandel",
     name: "Zinfandel",
     type: "Red Wine",
-    description: "Bold and fruit-forward with high alcohol and jammy notes",
+    description: "Bold and fruit-forward with high alcohol, jammy berry notes, and often a spicy character.",
     characteristics: ["Jammy", "High Alcohol", "Spicy", "Blackberry"],
-    foodPairings: ["BBQ Ribs", "Spicy Curry", "Pizza Margherita", "Eggplant Parmesan", "Stuffed Bell Peppers", "Carnitas", "Chili Con Carne", "Fried Chicken", "Shepherd's Pie", "Meatloaf", "Pizza", "Dark Chocolate", "Blue Cheese"]
+    foodPairings: ["BBQ Ribs", "Pizza", "Spicy Dishes", "Blue Cheese"]
   },
   {
     id: "sangiovese",
     name: "Sangiovese",
     type: "Red Wine",
-    description: "The soul of Chianti, featuring high acidity and cherry notes",
+    origin: "Tuscany, Italy",
+    description: "The soul of Chianti, featuring high acidity, firm tannins, and flavors of sour cherry, herbs, and earthy notes.",
     characteristics: ["Acidic", "Cherry", "Herbal", "Savory"],
-    foodPairings: ["Ratatouille", "Eggplant Parmesan", "Osso Buco", "Shakshuka", "Tomato-based Dishes", "Pizza", "Roasted Root Veggies", "Salami"]
+    foodPairings: ["Tomato-based Dishes", "Pizza", "Roasted Vegetables", "Hard Cheese"]
   },
   {
     id: "tempranillo",
     name: "Tempranillo",
     type: "Red Wine",
-    description: "Spanish classic with flavors of leather, tobacco, and red fruit",
+    origin: "Rioja & Ribera del Duero, Spain",
+    description: "Spanish classic with flavors of leather, tobacco, and red fruit. Often aged in American oak, imparting vanilla and dill notes.",
     characteristics: ["Savory", "Leather", "Tobacco", "Red Fruit"],
-    foodPairings: ["Paella", "Carnitas", "Tacos", "Lamb Chops", "Cured Meats", "Roasted Vegetables"]
+    foodPairings: ["Lamb", "Cured Meats", "Roasted Vegetables", "Paella"]
   },
   {
     id: "prosecco",
     name: "Prosecco",
     type: "Sparkling Wine",
-    description: "Light, bubbly, and fruity Italian sparkling wine",
+    origin: "Veneto, Italy",
+    description: "Light, fruity, and frothy Italian sparkling wine made primarily from Glera grapes. Generally less yeasty than Champagne.",
     characteristics: ["Bubbly", "Fruity", "Light", "Floral"],
-    foodPairings: ["Truffle Fries", "Strawberry Pavlova", "Bruschetta", "Fruit Platter", "Oysters", "Fruit Tart", "Appetizers", "Mild Cheese"]
+    foodPairings: ["Appetizers", "Mild Cheese", "Fruit Desserts", "Light Pastries"]
   },
   {
     id: "gewurztraminer",
     name: "Gewürztraminer",
     type: "White Wine",
-    description: "Highly aromatic with intense floral and lychee scents",
+    origin: "Alsace, France",
+    description: "Highly aromatic with intense floral, lychee, and rose petal scents. Often off-dry with a rich, oily texture.",
     characteristics: ["Floral", "Lychee", "Low Acidity", "Full-bodied"],
-    foodPairings: ["Spicy Curry", "Duck Breast", "Vegetable Stir Fry", "Asian Cuisine", "Strong Cheese"]
+    foodPairings: ["Spicy Asian Cuisine", "Duck", "Strong Cheese", "Foie Gras"]
   },
   {
     id: "albarino",
     name: "Albariño",
     type: "White Wine",
-    description: "High acidity with refreshing stone fruit and saline notes",
+    origin: "Rías Baixas, Spain",
+    description: "High acidity with refreshing stone fruit, citrus, and distinct saline or briny notes. Crisp and perfect for seafood.",
     characteristics: ["High Acidity", "Saline", "Peach", "Zesty"],
-    foodPairings: ["Tacos", "Paella", "Gazpacho", "Fish and Chips", "Fish Tacos", "Oysters", "Sushi", "White Fish", "Salads"]
+    foodPairings: ["Oysters", "Grilled White Fish", "Seafood Stews", "Salads"]
   },
   {
     id: "rose",
     name: "Rosé",
     type: "Rosé Wine",
-    description: "Fresh and versatile with strawberry and watermelon notes",
+    description: "Fresh and versatile with strawberry and watermelon notes. Can be made in dry or slightly sweet styles from many red grapes.",
     characteristics: ["Fresh", "Berry", "Crisp", "Dry"],
-    foodPairings: ["Ratatouille", "Pork Tenderloin", "Roasted Beet Salad", "Quiche Lorraine", "Lentil Soup", "Gnocchi", "Falafel", "Bouillabaisse", "Spanakopita", "Gazpacho", "Caprese Salad", "Stuffed Mushrooms", "Fish Tacos", "Bruschetta", "Stuffed Dates", "Greek Salad", "Cheese Platter", "Salmon", "Salads", "Grilled Chicken", "Charcuterie"]
+    foodPairings: ["Salads", "Grilled Chicken", "Charcuterie", "Light Pasta"]
   },
   {
     id: "provence-rose",
     name: "Provence Rosé",
     type: "Rosé Wine",
-    description: "Pale, dry, and elegant with notes of citrus and herbs",
+    origin: "Provence, France",
+    description: "The benchmark for dry rosé: pale salmon in color, crisp, and elegant with delicate notes of citrus, red berries, and herbs.",
     characteristics: ["Dry", "Pale", "Elegant", "Mineral"],
-    foodPairings: ["Oysters", "Sushi & Sashimi", "Goat Cheese", "Asparagus", "Lobster"]
+    foodPairings: ["Oysters", "Goat Cheese", "Salad Niçoise", "Grilled Fish"]
   },
   {
     id: "white-zinfandel",
     name: "White Zinfandel",
     type: "Rosé Wine",
-    description: "Slightly sweet and fruity with strawberry and melon flavors",
+    origin: "California, USA",
+    description: "A sweeter style of rosé made from Zinfandel grapes, known for its pink color and flavors of strawberry and candy.",
     characteristics: ["Sweet", "Fruity", "Strawberry", "Light"],
-    foodPairings: ["Spicy Curry", "BBQ Ribs", "Fruit Tart", "Roast Chicken", "Goat Cheese"]
+    foodPairings: ["Spicy Appetizers", "BBQ", "Fruity Desserts", "Picnic Food"]
   },
   {
     id: "sangiovese-rose",
     name: "Rosato",
     type: "Rosé Wine",
-    description: "Italian rosé with bright acidity and cherry notes",
+    origin: "Italy",
+    description: "Italian rosé, often from Sangiovese, with bright acidity, crisp red fruit flavors, and a dry finish.",
     characteristics: ["Acidic", "Cherry", "Bright", "Crisp"],
-    foodPairings: ["Creamy Pasta", "Roast Chicken", "Goat Cheese", "Mushrooms", "Salmon"]
+    foodPairings: ["Antipasti", "Pasta with Light Sauce", "Grilled Seafood", "Fresh Cheese"]
   },
   {
     id: "port",
     name: "Port",
     type: "Dessert Wine",
-    description: "Sweet, fortified red wine with rich berry and nut flavors",
+    origin: "Douro Valley, Portugal",
+    description: "Sweet, fortified red wine with rich berry, chocolate, and nut flavors. Styles range from fruity Ruby to complex, aged Tawny.",
     characteristics: ["Sweet", "Fortified", "Rich", "Nutty"],
-    foodPairings: ["Stuffed Dates", "Blue Cheese", "Dark Chocolate", "Walnuts", "Dried Fruits"]
+    foodPairings: ["Blue Cheese", "Dark Chocolate", "Walnuts", "Dried Fruits"]
   },
   {
     id: "moscato",
     name: "Moscato",
     type: "White Wine",
-    description: "Sweet and low alcohol with orange blossom and peach notes",
+    description: "Sweet, low-alcohol, and lightly sparkling wine with pronounced floral aromas and flavors of peach and orange blossom.",
     characteristics: ["Sweet", "Light", "Floral", "Peach"],
-    foodPairings: ["Spicy Curry", "Stuffed Dates", "Fruit Platter", "Fruit Tart", "Spicy Asian Cuisine", "Desserts", "Brie Cheese"]
+    foodPairings: ["Fruit Desserts", "Spicy Asian Cuisine", "Brie Cheese", "Brunch Pastries"]
   },
   {
     id: "grenache",
     name: "Grenache",
     type: "Red Wine",
-    description: "Medium-bodied with spicy berry flavors and soft tannins",
+    origin: "Southern Rhône, France & Spain (as Garnacha)",
+    description: "Medium-bodied with spicy berry flavors, soft tannins, and high alcohol. A key component in blends like Châteauneuf-du-Pape.",
     characteristics: ["Spicy", "Strawberry", "Soft", "Low Tannin"],
-    foodPairings: ["Ratatouille", "Tacos", "Lentil Soup", "Pork Tenderloin", "Cornish Game Hen", "Cassoulet", "Bouillabaisse", "Carnitas", "Pulled Pork Sandwich", "Roasted Vegetables", "Pork Belly", "Grilled Chicken", "Stews"]
+    foodPairings: ["Roasted Vegetables", "Grilled Chicken", "Stews", "Pork"]
   },
   {
     id: "viognier",
     name: "Viognier",
     type: "White Wine",
-    description: "Full-bodied white with floral aromas and oily texture",
+    origin: "Northern Rhône, France",
+    description: "Full-bodied white with intense floral aromas (honeysuckle, peach blossom), oily texture, and low acidity.",
     characteristics: ["Floral", "Honeysuckle", "Full-bodied", "Rich"],
-    foodPairings: ["Spicy Curry", "Creamy Pasta", "Crab Cakes", "Scallops with Pancetta", "Lobster", "Roasted Root Veggies", "Poultry"]
+    foodPairings: ["Lobster", "Crab Cakes", "Creamy Pasta", "Spicy Curry"]
   },
-  // Additional wines
   {
     id: "nebbiolo",
     name: "Nebbiolo",
     type: "Red Wine",
-    description: "Italian powerhouse with high tannins and notes of tar and roses",
+    origin: "Piedmont, Italy",
+    description: "Italian powerhouse with high tannins, high acidity, and complex notes of tar, roses, and red fruit. The grape of Barolo and Barbaresco.",
     characteristics: ["High Tannins", "Tar", "Rose", "Earthy"],
-    foodPairings: ["Wild Mushroom Risotto", "Truffle Pasta", "Braised Beef", "Wild Game", "Mushrooms"]
+    foodPairings: ["Truffle Pasta", "Braised Beef", "Wild Game", "Mushrooms"]
   },
   {
     id: "carmenere",
     name: "Carmenère",
     type: "Red Wine",
-    description: "Chilean specialty with green pepper and dark fruit notes",
+    origin: "Chile",
+    description: "Chile's signature grape, known for its savory profile of dark fruit, green pepper, and chocolate, with soft tannins.",
     characteristics: ["Herbal", "Green Pepper", "Dark Fruit", "Medium-bodied"],
-    foodPairings: ["Lamb Chops", "Chilean Empanadas", "Spicy Sausages", "Grilled Vegetables", "Lamb"]
+    foodPairings: ["Lamb", "Grilled Vegetables", "Spicy Sausages", "Beef Stew"]
   },
   {
     id: "petite-sirah",
     name: "Petite Sirah",
     type: "Red Wine",
-    description: "Inky dark with intense tannins and blueberry flavors",
+    origin: "California, USA",
+    description: "Inky dark, full-bodied wine with intense tannins, bold flavors of blueberry and black pepper, and a long finish.",
     characteristics: ["Inky", "High Tannins", "Blueberry", "Peppery"],
-    foodPairings: ["Chili Con Carne", "Barbecue Brisket", "Blue Cheese", "Venison", "Chocolate Desserts"]
+    foodPairings: ["Barbecue Brisket", "Venison", "Blue Cheese", "Chocolate Desserts"]
   },
   {
     id: "gruner-veltliner",
     name: "Grüner Veltliner",
     type: "White Wine",
-    description: "Austrian white with white pepper and citrus notes",
+    origin: "Austria",
+    description: "Crisp Austrian white with signature white pepper and lentil notes, high acidity, and flavors of citrus and green apple.",
     characteristics: ["Peppery", "Citrus", "High Acidity", "Mineral"],
-    foodPairings: ["Asparagus", "Sushi & Sashimi", "Vegetarian Dishes", "Sushi", "Light Fish"]
+    foodPairings: ["Asparagus", "Sushi", "Vegetarian Dishes", "Light Fish"]
   },
   {
     id: "vermentino",
     name: "Vermentino",
     type: "White Wine",
-    description: "Mediterranean white with herbal and saline characteristics",
+    origin: "Sardinia, Italy & Southern France",
+    description: "Mediterranean white with herbal notes, citrus, and a distinct saline quality. Refreshing with a slightly bitter almond finish.",
     characteristics: ["Herbal", "Saline", "Citrus", "Light"],
-    foodPairings: ["Ceviche", "Shrimp Scampi", "Mussels Marinara", "Caprese Salad", "Seafood Stew", "Grilled Fish", "Mediterranean Salads", "Olives"]
+    foodPairings: ["Grilled Fish", "Seafood Stew", "Mediterranean Salads", "Olives"]
   },
   {
     id: "torrontes",
     name: "Torrontés",
     type: "White Wine",
-    description: "Argentinian aromatic white with floral and peach notes",
+    origin: "Argentina",
+    description: "Argentina's aromatic white, offering intense floral and peach aromas that are similar to Muscat, but with a dry finish.",
     characteristics: ["Aromatic", "Floral", "Peach", "Dry"],
-    foodPairings: ["Ceviche", "Spicy Thai Food", "Chicken Empanadas", "Soft Cheese"]
+    foodPairings: ["Ceviche", "Spicy Thai Food", "Soft Cheese", "Empanadas"]
   },
   {
     id: "barbera",
     name: "Barbera",
     type: "Red Wine",
-    description: "Italian red with high acidity and low tannins",
+    origin: "Piedmont, Italy",
+    description: "Italian red with very high acidity, low tannins, and juicy flavors of sour cherry. Lively and food-friendly.",
     characteristics: ["High Acidity", "Low Tannins", "Cherry", "Light-bodied"],
-    foodPairings: ["Eggplant Parmesan", "Gnocchi", "Risotto", "Shakshuka", "Pizza", "Pasta with Tomato Sauce", "Cold Cuts", "Ratatouille"]
+    foodPairings: ["Pizza", "Pasta with Tomato Sauce", "Cold Cuts", "Ratatouille"]
   },
   {
     id: "cinsault",
     name: "Cinsault",
     type: "Red Wine",
-    description: "Light-bodied red with floral and strawberry notes",
+    origin: "Southern Rhône, France",
+    description: "Light-bodied, low-tannin red with floral aromas and flavors of fresh strawberry. Often used in blends and rosé.",
     characteristics: ["Light", "Floral", "Strawberry", "Low Alcohol"],
-    foodPairings: ["Ratatouille", "Charcuterie", "Grilled Fish", "Vegetable Terrine", "Goat Cheese"]
+    foodPairings: ["Charcuterie", "Grilled Fish", "Vegetable Dishes", "Goat Cheese"]
   },
   {
     id: "sparkling-rose",
     name: "Sparkling Rosé",
     type: "Sparkling Wine",
-    description: "Bubbly rosé with red fruit and crisp acidity",
+    description: "Bubbly rosé with red fruit flavors and crisp acidity. Can be made via the traditional method or Charmat method.",
     characteristics: ["Bubbly", "Red Fruit", "Crisp", "Festive"],
-    foodPairings: ["Sushi & Sashimi", "Smoked Salmon", "Strawberry Desserts", "Fried Chicken", "Sushi"]
+    foodPairings: ["Smoked Salmon", "Sushi", "Strawberry Desserts", "Fried Appetizers"]
   },
   {
     id: "lambrusco",
     name: "Lambrusco",
     type: "Sparkling Red Wine",
-    description: "Italian sparkling red with dark fruit and slight bitterness",
+    origin: "Emilia-Romagna, Italy",
+    description: "Italian sparkling red, ranging from dry to sweet, with dark fruit flavors and a refreshing, slightly bitter finish.",
     characteristics: ["Sparkling", "Dark Fruit", "Bitter Finish", "Medium-bodied"],
-    foodPairings: ["Charcuterie Boards", "Pizza", "Pork Sausages", "Parmesan Cheese"]
+    foodPairings: ["Charcuterie", "Pizza", "Parmesan Cheese", "Pork Sausages"]
   },
   {
     id: "chenin-blanc",
     name: "Chenin Blanc",
     type: "White Wine",
-    description: "Versatile with honey, apple, and mineral notes",
-    characteristics: ["Honey", "Apple", "Mineral", "Versatile"],
-    foodPairings: ["Roasted Cauliflower Steak", "Roasted Beet Salad", "Pork Belly", "Roast Pork", "Thai Curry", "Quiche", "Goat Cheese"]
+    origin: "Loire Valley, France & South Africa",
+    description: "One of the world's most versatile white grapes, capable of making superb wines from bone dry to lusciously sweet, and sparkling. Hallmarks are high acidity and flavors of quince, apple, and honey[citation:7][citation:9]. It is the most planted variety in South Africa[citation:7].",
+    characteristics: ["High Acidity", "Versatile", "Apple", "Honey"],
+    foodPairings: ["Roast Chicken/Turkey[citation:7]", "Pork with Apples[citation:7]", "Spicy Asian Cuisine[citation:7]", "Goat Cheese[citation:1]"]
   },
   {
     id: "mourvedre",
     name: "Mourvèdre",
     type: "Red Wine",
-    description: "Meaty and rustic with dark fruit and leather notes",
+    origin: "Southern Rhône, France & Spain (as Monastrell)",
+    description: "Meaty, rustic, and tannic with dark fruit, leather, and earthy notes. Ages well and is often blended with Grenache and Syrah.",
     characteristics: ["Meaty", "Rustic", "Dark Fruit", "Leather"],
     foodPairings: ["Game Meat", "Grilled Sausages", "Stews", "Hard Cheese"]
   },
@@ -327,15 +361,17 @@ export const wines: Wine[] = [
     id: "sherry",
     name: "Sherry",
     type: "Fortified Wine",
-    description: "Spanish fortified wine ranging from dry to sweet",
+    origin: "Jerez, Spain",
+    description: "Spanish fortified wine with a unique aging process (solera). Ranges from very dry, nutty Fino to rich, sweet Pedro Ximénez.",
     characteristics: ["Fortified", "Nutty", "Complex", "Oxidative"],
-    foodPairings: ["Gazpacho", "Stuffed Dates", "Tapas", "Olives", "Almonds", "Iberian Ham"]
+    foodPairings: ["Tapas", "Olives", "Almonds", "Iberian Ham"]
   },
   {
     id: "ice-wine",
     name: "Ice Wine",
     type: "Dessert Wine",
-    description: "Intensely sweet wine made from frozen grapes",
+    origin: "Germany (Eiswein), Canada",
+    description: "Intensely sweet wine made from grapes naturally frozen on the vine, concentrating sugars and acids. Notes of honey, apricot, and tropical fruit.",
     characteristics: ["Very Sweet", "Concentrated", "Honey", "Apricot"],
     foodPairings: ["Blue Cheese", "Foie Gras", "Fruit Desserts", "Crème Brûlée"]
   },
@@ -343,28 +379,30 @@ export const wines: Wine[] = [
     id: "spatburgunder",
     name: "Spätburgunder",
     type: "Red Wine",
-    description: "German Pinot Noir with elegance and red fruit",
+    origin: "Germany",
+    description: "German name for Pinot Noir. Typically lighter in body than its French counterpart, with elegant red fruit and higher acidity.",
     characteristics: ["Elegant", "Red Fruit", "Light", "Acidic"],
-    foodPairings: ["Mushrooms", "Roast Veal", "Trout", "Wild Mushrooms", "Light Pasta"]
+    foodPairings: ["Roast Veal", "Mushrooms", "Trout", "Light Pasta"]
   },
   {
     id: "xinomavro",
     name: "Xinomavro",
     type: "Red Wine",
-    description: "Greek red with high acidity and tomato-olive notes",
-    characteristics: ["High Acidity", "Tomato", "Olive", "Tannic"],
-    foodPairings: ["Grilled Halloumi", "Greek Lamb", "Tomato-based Stews", "Grilled Vegetables", "Feta"]
+    origin: "Naoussa, Greece",
+    description: "Greece's most noble red grape, often compared to Nebbiolo[citation:5][citation:8]. It produces pale but age-worthy wines with high acidity and tannins, and unique flavors of sun-dried tomato, olive, and spices[citation:2][citation:5][citation:8].",
+    characteristics: ["High Acidity", "High Tannins", "Tomato", "Olive"],
+    foodPairings: ["Roast Lamb[citation:5]", "Mushroom Risotto[citation:2]", "Grilled Halloumi[citation:8]", "Tomato-based Stews"]
   },
   {
-    id: "fassolis",
+    id: "assyrtiko",
     name: "Assyrtiko",
     type: "White Wine",
-    description: "Greek white with high acidity and volcanic minerality",
+    origin: "Santorini, Greece",
+    description: "A crisp, bone-dry white wine native to the volcanic island of Santorini[citation:6][citation:10]. It retains bracing acidity even when ripe, offering intense minerality and flavors of lemon, lime, and saline[citation:4][citation:6][citation:10]. It is increasingly grown in other regions[citation:10].",
     characteristics: ["High Acidity", "Mineral", "Citrus", "Saline"],
-    foodPairings: ["Spanakopita", "Grilled Octopus", "Fried Calamari", "Greek Salad", "Shellfish"]
+    foodPairings: ["Grilled Octopus[citation:3]", "Shellfish[citation:6]", "Greek Salad (tomato, feta)[citation:6]", "Fried Calamari[citation:3]"]
   }
 ];
-
 export const foods: Food[] = [
   {
     id: "grilled-steak",

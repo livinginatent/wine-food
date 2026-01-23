@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowLeft, Wine, UtensilsCrossed } from "lucide-react";
+import { ArrowLeft, UtensilsCrossed } from "lucide-react";
 import { getWineById, getFoodById, getFoodPairingsForWine, getWinePairingsForFood } from "@/lib/pairings";
 import { IoIosWine } from "react-icons/io";
+import { getWineTypeColor } from "@/lib/wineTypeColor";
 
 interface PairingResultsProps {
   mode: "wine" | "food";
@@ -67,9 +68,20 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
                       ? `${selectedWine?.name} Food Pairings`
                       : `${selectedFood?.name} Wine Pairings`}
                   </h1>
-                  <p className="mt-2 font-inter text-base font-light text-secondary">
-                    {selectedWine?.type || selectedFood?.category}
-                  </p>
+                  {mode === "wine" ? (
+                    <p
+                      className={`mt-2 font-inter text-base font-light ${
+                        selectedWine ? getWineTypeColor(selectedWine.type) : "text-secondary"
+                      }`}
+                    >
+                      {selectedWine?.type}
+                      {selectedWine?.origin && ` • ${selectedWine.origin}`}
+                    </p>
+                  ) : (
+                    <p className="mt-2 font-inter text-base font-light text-secondary">
+                      {selectedFood?.category}
+                    </p>
+                  )}
                 </div>
                 <p className="font-inter text-base font-light leading-relaxed text-accent/80">
                   {selectedWine?.description || selectedFood?.description}
@@ -163,8 +175,15 @@ export default function PairingResults({ mode, selectedId, highlightedFoodId, on
                         <h4 className="font-playfair text-xl font-medium text-primary">
                           {wine.name}
                         </h4>
-                        <p className="font-inter text-sm font-light text-secondary">
+                        <p
+                          className={`font-inter text-sm font-light ${getWineTypeColor(
+                            wine.type
+                          )}`}
+                        >
                           {wine.type}
+                          {wine.origin && (
+                            <span className="text-accent/60"> • {wine.origin}</span>
+                          )}
                         </p>
                         <p className="font-inter text-sm font-light text-accent/70">
                           {wine.description}

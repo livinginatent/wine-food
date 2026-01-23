@@ -72,10 +72,10 @@ export default function Home() {
               </div>
               <div>
                 <h2 className="font-playfair text-3xl font-medium text-primary">
-                  I have wine
+                  Start from a wine
                 </h2>
                 <p className="mt-2 font-inter text-base font-light text-accent/70">
-                  Looking for the perfect food pairing
+                  Tell us what’s in your glass and we’ll suggest dishes that make it shine
                 </p>
               </div>
             </div>
@@ -101,10 +101,10 @@ export default function Home() {
               </div>
               <div>
                 <h2 className="font-playfair text-3xl font-medium text-accent">
-                  I have food
+                  Start from a dish
                 </h2>
                 <p className="mt-2 font-inter text-base font-light text-accent/70">
-                  Looking for the perfect wine pairing
+                  Share what’s on the table and we’ll help you pour a matching wine
                 </p>
               </div>
             </div>

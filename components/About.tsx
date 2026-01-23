@@ -82,8 +82,8 @@ export default function About({ onBack }: AboutProps) {
                 </div>
                 <p className="font-inter text-sm font-light leading-relaxed text-accent/70">
                   Browse our curated collection of wines, from bold reds to elegant whites and 
-                  refreshing rosés. Each wine includes detailed descriptions, characteristics, and 
-                  recommended food pairings.
+                  refreshing rosés. Each wine includes descriptions focused on style, structure, 
+                  and typical regions of origin, plus characteristics and recommended food pairings.
                 </p>
               </div>
 
@@ -130,11 +130,33 @@ export default function About({ onBack }: AboutProps) {
                 </div>
                 <p className="font-inter text-sm font-light leading-relaxed text-accent/70">
                   Every pairing recommendation is thoughtfully curated based on traditional 
-                  principles, flavor profiles, and proven combinations that have delighted 
-                  palates for generations.
+                  principles, flavor profiles, classic regional matches and patterns used in 
+                  professional courses (such as WSET-style frameworks and sommelier training), 
+                  then simplified into an approachable, hobbyist-friendly tool.
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* How These Recommendations Were Built */}
+          <div className="space-y-4 pt-8 border-t border-primary/10">
+            <h3 className="font-playfair text-3xl font-medium text-primary">
+              How these recommendations were put together
+            </h3>
+            <p className="font-inter text-base font-light leading-relaxed text-accent/80">
+              The pairings in this app are based on a mix of classic pairing rules, widely accepted
+              regional matches (think Chianti with tomato-based Italian dishes, or Sauvignon Blanc
+              with goat cheese), tasting notes from producers and critics, and structured learning
+              resources. They’re not meant to replace a trained sommelier, but to capture the core
+              logic they use—acidity, tannin, sweetness, body and origin—and express it in a clear,
+              repeatable way.
+            </p>
+            <p className="font-inter text-base font-light leading-relaxed text-accent/80">
+              As a personal project, it reflects a learning journey through books, courses, and
+              a lot of glass-in-hand experimentation. The goal is to be transparent about the
+              thought process, give enough detail for enthusiasts, and still feel welcoming for
+              people at the start of their wine journey.
+            </p>
           </div>
 
           {/* Philosophy */}

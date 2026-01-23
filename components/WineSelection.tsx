@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { Wine, ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Search } from "lucide-react";
 import { wines } from "@/lib/pairings";
 import { useState, useMemo } from "react";
-import { AiOutlineRead } from "react-icons/ai";
 import { IoIosWine } from "react-icons/io";
+import { getWineTypeColor } from "@/lib/wineTypeColor";
 
 interface WineSelectionProps {
   onSelect: (wineId: string) => void;
@@ -13,7 +13,6 @@ interface WineSelectionProps {
 }
 
 export default function WineSelection({ onSelect, onBack }: WineSelectionProps) {
-  const [hoveredWine, setHoveredWine] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredWines = useMemo(() => {
@@ -86,8 +85,6 @@ export default function WineSelection({ onSelect, onBack }: WineSelectionProps) 
               {filteredWines.map((wine) => (
               <button
                 key={wine.id}
-                onMouseEnter={() => setHoveredWine(wine.id)}
-                onMouseLeave={() => setHoveredWine(null)}
                 onClick={() => onSelect(wine.id)}
                 className="group relative overflow-hidden rounded-sm border border-primary/20 bg-white/50 p-8 text-left transition-all duration-500 hover:border-primary/40 hover:shadow-lg"
               >
@@ -96,8 +93,11 @@ export default function WineSelection({ onSelect, onBack }: WineSelectionProps) 
                     <h3 className="font-playfair text-2xl font-medium text-primary">
                       {wine.name}
                     </h3>
-                    <p className="font-inter text-sm font-light text-secondary">
+                    <p className={`font-inter text-sm font-light ${getWineTypeColor(wine.type)}`}>
                       {wine.type}
+                      {wine.origin && (
+                        <span className="text-accent/60"> • {wine.origin}</span>
+                      )}
                     </p>
                   </div>
                   <p className="font-inter text-sm font-light leading-relaxed text-accent/70">
