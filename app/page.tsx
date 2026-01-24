@@ -241,6 +241,13 @@ export default function Home() {
           >
             Interactive Pairing Chart
           </Link>
+          <span className="text-accent/30">•</span>
+          <Link
+            href="/grapes"
+            className="font-inter text-sm font-light text-accent/60 transition-colors hover:text-accent"
+          >
+            Explore Wine Grapes
+          </Link>
         </div>
       </footer>
     </div>

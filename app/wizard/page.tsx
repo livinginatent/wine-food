@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Sparkles, UtensilsCrossed, WandSparkles, Wine } from "lucide-react";
+import { ArrowLeft, UtensilsCrossed, WandSparkles, Wine, Loader2 } from "lucide-react";
 
 type UserLevel = "casual" | "connoisseur";
 type PairingDirection = "food" | "wine";
@@ -42,7 +42,7 @@ const casualWineOptions = {
 
 const tweakOptions = [
   "Too expensive? Give me a budget alternative.",
-  "I hate the suggested varietal. Suggest something else.",
+  "I don't like the suggested varietal. Suggest something else.",
   "Make it vegetarian-friendly.",
 ];
 
@@ -64,8 +64,27 @@ export default function PairingWizardPage() {
   const [result, setResult] = useState<PairingResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [lastPayload, setLastPayload] = useState<WizardPayload | null>(null);
+  const [loadingMessage, setLoadingMessage] = useState(0);
 
   const totalSteps = 4;
+
+  const loadingMessages = [
+    "Consulting our sommelier...",
+    "Analyzing flavor profiles...",
+    "Exploring the wine cellar...",
+    "Matching tannins and textures...",
+    "Curating the perfect pairing...",
+  ];
+
+  useEffect(() => {
+    if (!loading) return;
+    
+    const interval = setInterval(() => {
+      setLoadingMessage((prev) => (prev + 1) % loadingMessages.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [loading, loadingMessages.length]);
 
   const canContinue = useMemo(() => {
     if (step === 0) return !!userLevel;
@@ -102,6 +121,7 @@ export default function PairingWizardPage() {
     setLoading(true);
     setError(null);
     setResult(null);
+    setLoadingMessage(0);
 
     try {
       const response = await fetch("/api/pairing-wizard", {
@@ -247,7 +267,7 @@ export default function PairingWizardPage() {
                         Food-first
                       </p>
                       <p className="mt-2 font-inter text-sm text-accent/70">
-                        Tell us what you're cooking and we’ll match the wine.
+                        Tell us what you&apos;re cooking and we&apos;ll match the wine.
                       </p>
                     </div>
                   </button>
@@ -268,7 +288,7 @@ export default function PairingWizardPage() {
                         Wine-first
                       </p>
                       <p className="mt-2 font-inter text-sm text-accent/70">
-                        Already picked a bottle? We’ll find the perfect dish.
+                        Already picked a bottle? We&apos;ll find the perfect dish.
                       </p>
                     </div>
                   </button>
@@ -636,6 +656,35 @@ export default function PairingWizardPage() {
             </button>
           </div>
         </section>
+
+        {loading && (
+          <section className="mt-10 rounded-sm border border-primary/15 bg-white/60 p-8 shadow-sm md:p-10">
+            <div className="flex flex-col items-center justify-center py-12">
+              <div className="relative">
+                <Loader2 className="h-16 w-16 animate-spin text-primary/30" />
+                <Wine className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-primary" />
+              </div>
+              <p className="mt-6 font-playfair text-xl text-primary animate-pulse">
+                {loadingMessages[loadingMessage]}
+              </p>
+              <div className="mt-4 flex gap-2">
+                {loadingMessages.map((_, idx) => (
+                  <div
+                    key={idx}
+                    className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                      idx === loadingMessage
+                        ? "bg-primary w-8"
+                        : "bg-primary/20"
+                    }`}
+                  />
+                ))}
+              </div>
+              <p className="mt-4 font-inter text-sm text-accent/60">
+                This may take a moment...
+              </p>
+            </div>
+          </section>
+        )}
 
         {(result || error) && (
           <section className="mt-10 rounded-sm border border-primary/15 bg-white/60 p-8 shadow-sm md:p-10">
