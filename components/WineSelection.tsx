@@ -6,6 +6,7 @@ import { wines } from "@/lib/pairings";
 import { useState, useMemo } from "react";
 import { IoIosWine } from "react-icons/io";
 import { getWineTypeColor } from "@/lib/wineTypeColor";
+import Link from "next/link";
 
 interface WineSelectionProps {
   onSelect: (wineId: string) => void;
@@ -45,13 +46,61 @@ export default function WineSelection({ onSelect, onBack }: WineSelectionProps) 
             </div>
             <div>
               <h1 className="font-playfair text-2xl font-medium text-primary">
-                Select Your Wine
+                Select Your Wine to Pair with Food
               </h1>
               <p className="font-inter text-sm font-light text-accent/60">
                 Choose a wine to discover perfect food pairings
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Wine food pairing context */}
+      <section className="border-b border-primary/10 bg-white/10 px-6 py-6">
+        <div className="mx-auto max-w-6xl space-y-3">
+          <h2 className="font-playfair text-xl font-medium text-primary">
+            Wine food pairing starts with your wine
+          </h2>
+          <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+            This wine selection page is the first step in wine food pairing. Pick a wine from the grid (or search by name, type, or characteristics) and use the chart experience to match it to dishes. The point isn’t to find one “perfect” answer; it’s to understand how your wine’s balance behaves with real food.
+          </p>
+          <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+            When you compare wine food pairing results, read the reason as a mechanism. Acidity usually works as a reset button for rich sauces, fat, and bitter greens. Tannin is the structure lever: it helps when the dish has protein, firm texture, or cured/aged notes, and it can soften astringency when the balance is right. Body affects weight: fuller wines tend to follow through with roasted, caramelized, and umami-heavy flavors, while lighter wines keep delicate meals from getting pushed aside.
+          </p>
+          <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+            For sweet courses, use the same rule every time: match sweetness. If the dessert is sweet and the wine isn’t, wine food pairing often tastes washed out. If you see bubbles in your matches, treat them as a palate cleanser that makes heavier bites feel cleaner between sips.
+          </p>
+          <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+            In your first session of wine food pairing, pick one wine and test the logic across the dishes you select. If several matches mention acidity, you probably have a wine that handles fat and sauces. If the results lean toward tannin, look for plates with protein or firmer texture. Keep an eye on sweetness: desserts and sweet sauces need a wine food pairing that has enough sweetness to keep the wine from tasting sharper and thinner.
+          </p>
+          <p className="font-inter text-sm font-light text-accent/70 leading-relaxed">
+            If you want to switch starting points, continue with the homepage tools:{" "}
+            <Link className="text-accent hover:underline" href="/wine">
+              start from a wine
+            </Link>
+            ,{" "}
+            <Link className="text-accent hover:underline" href="/food">
+              start from a dish
+            </Link>
+            ,{" "}
+            <Link className="text-accent hover:underline" href="/wizard">
+              smart sommelier
+            </Link>
+            ,{" "}
+            <Link className="text-accent hover:underline" href="/moods">
+              mood-based pairings
+            </Link>
+            , and{" "}
+            <Link className="text-accent hover:underline" href="/guide">
+              the pairing guide
+            </Link>
+            . When you’re ready to connect categories to styles, open{" "}
+            <Link className="text-accent hover:underline" href="/chart">
+              the interactive chart
+            </Link>
+            .
+          </p>
         </div>
       </section>
 

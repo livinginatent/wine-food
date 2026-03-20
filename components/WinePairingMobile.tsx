@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from "react";
 import { ArrowLeft, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import the same data structures from WinePairingChart
@@ -236,7 +237,10 @@ export default function WinePairingMobile() {
   }, [selectedFood, activePairings]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-background pairing-container relative">
+    <div
+      ref={containerRef}
+      className="min-h-screen bg-background pairing-container relative"
+    >
       {/* Sticky Header */}
       <div className="sticky top-0 z-30 bg-background/95 backdrop-blur-md border-b border-secondary/20 px-4 py-4">
         <div className="flex items-center justify-between">
@@ -258,19 +262,19 @@ export default function WinePairingMobile() {
       <div ref={columnsRef} className="flex h-[calc(100vh-100px)] relative">
         {/* SVG Overlay for connection lines */}
         {pathData.length > 0 && (
-          <svg 
-            className="absolute inset-0 pointer-events-none z-10" 
-            style={{ 
-              width: '100%', 
-              height: '100%',
-              overflow: 'visible'
+          <svg
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{
+              width: "100%",
+              height: "100%",
+              overflow: "visible",
             }}
           >
             <AnimatePresence>
               {pathData.map((pathInfo, idx) => {
-                const wine = wineStyles.find(w => w.id === pathInfo.wineId);
+                const wine = wineStyles.find((w) => w.id === pathInfo.wineId);
                 if (!wine) return null;
-                
+
                 return (
                   <motion.path
                     key={`${pathInfo.foodId}-${pathInfo.wineId}-${idx}`}
@@ -299,12 +303,14 @@ export default function WinePairingMobile() {
           <div className="p-4 space-y-2">
             {foodCategories.map((food) => {
               const isSelected = selectedFood === food.id;
-              const hasPairings = pairings.some(p => p.foodId === food.id);
-              
+              const hasPairings = pairings.some((p) => p.foodId === food.id);
+
               return (
                 <motion.div
                   key={food.id}
-                  ref={(el) => { foodRefs.current[food.id] = el; }}
+                  ref={(el) => {
+                    foodRefs.current[food.id] = el;
+                  }}
                   onClick={() => {
                     setSelectedFood(isSelected ? null : food.id);
                     setSelectedWine(null);
@@ -321,9 +327,11 @@ export default function WinePairingMobile() {
                 >
                   <div className="text-2xl">{food.icon}</div>
                   <div className="flex-1">
-                    <p className={`font-inter text-sm font-medium text-accent ${
-                      isSelected ? "uppercase tracking-wide" : ""
-                    }`}>
+                    <p
+                      className={`font-inter text-sm font-medium text-accent ${
+                        isSelected ? "uppercase tracking-wide" : ""
+                      }`}
+                    >
                       {food.name}
                     </p>
                   </div>
@@ -342,11 +350,13 @@ export default function WinePairingMobile() {
             {wineStyles.map((wine) => {
               const isActive = activeWineIds.includes(wine.id);
               const isSelected = selectedWine?.id === wine.id;
-              
+
               return (
                 <motion.div
                   key={wine.id}
-                  ref={(el) => { wineRefs.current[wine.id] = el; }}
+                  ref={(el) => {
+                    wineRefs.current[wine.id] = el;
+                  }}
                   onClick={() => setSelectedWine(wine)}
                   className={`relative flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all ${
                     isActive || isSelected
@@ -374,20 +384,25 @@ export default function WinePairingMobile() {
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-3 bg-white/80 rounded-sm"></div>
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
-                    <p className={`font-inter text-xs font-medium text-accent ${
-                      isActive || isSelected ? "uppercase tracking-wide" : ""
-                    }`}>
+                    <p
+                      className={`font-inter text-xs font-medium text-accent ${
+                        isActive || isSelected ? "uppercase tracking-wide" : ""
+                      }`}
+                    >
                       {wine.name}
                     </p>
                     {isActive && selectedFood && (
                       <p className="font-inter text-xs font-light text-accent/60 mt-1 line-clamp-2">
-                        {activePairings.find(p => p.wineId === wine.id)?.reason}
+                        {
+                          activePairings.find((p) => p.wineId === wine.id)
+                            ?.reason
+                        }
                       </p>
                     )}
                   </div>
-                  
+
                   {isActive && (
                     <div className="flex-shrink-0">
                       <div
@@ -431,7 +446,7 @@ export default function WinePairingMobile() {
                 <X className="h-6 w-6" />
               </button>
             </div>
-            
+
             <div className="p-6 space-y-6">
               {/* Taste Profile */}
               <div className="space-y-3">
@@ -440,26 +455,43 @@ export default function WinePairingMobile() {
                 </h3>
                 <div className="space-y-2">
                   <div>
-                    <p className="font-inter text-xs font-medium text-accent/60 mb-1">Intensity</p>
-                    <p className="font-inter text-sm font-light text-accent/70">{selectedWine.intensity}</p>
+                    <p className="font-inter text-xs font-medium text-accent/60 mb-1">
+                      Intensity
+                    </p>
+                    <p className="font-inter text-sm font-light text-accent/70">
+                      {selectedWine.intensity}
+                    </p>
                   </div>
                   <div>
-                    <p className="font-inter text-xs font-medium text-accent/60 mb-1">Description</p>
-                    <p className="font-inter text-sm font-light text-accent/70 leading-relaxed">{selectedWine.description}</p>
+                    <p className="font-inter text-xs font-medium text-accent/60 mb-1">
+                      Description
+                    </p>
+                    <p className="font-inter text-sm font-light text-accent/70 leading-relaxed">
+                      {selectedWine.description}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Profile Bars */}
               <div className="space-y-4 border-t border-secondary/10 pt-4">
-                <h3 className="font-playfair text-xl font-medium text-accent">Profile</h3>
+                <h3 className="font-playfair text-xl font-medium text-accent">
+                  Profile
+                </h3>
                 {["body", "acidity", "tannin"].map((key) => {
-                  const value = selectedWine.profile[key as keyof typeof selectedWine.profile];
+                  const value =
+                    selectedWine.profile[
+                      key as keyof typeof selectedWine.profile
+                    ];
                   return (
                     <div key={key}>
                       <div className="flex justify-between items-center mb-2">
-                        <span className="font-playfair text-sm font-medium text-accent capitalize">{key}</span>
-                        <span className="font-inter text-xs font-light text-accent/60">{value}/5</span>
+                        <span className="font-playfair text-sm font-medium text-accent capitalize">
+                          {key}
+                        </span>
+                        <span className="font-inter text-xs font-light text-accent/60">
+                          {value}/5
+                        </span>
                       </div>
                       <div className="relative w-full bg-secondary/10 rounded-full h-2 overflow-hidden">
                         <motion.div
@@ -476,7 +508,9 @@ export default function WinePairingMobile() {
 
               {/* Grape Varieties */}
               <div className="space-y-3 border-t border-secondary/10 pt-4">
-                <h3 className="font-playfair text-xl font-medium text-accent">Grape Varieties</h3>
+                <h3 className="font-playfair text-xl font-medium text-accent">
+                  Grape Varieties
+                </h3>
                 <div className="grid grid-cols-2 gap-2">
                   {selectedWine.grapes.map((grape, idx) => (
                     <div
@@ -487,59 +521,150 @@ export default function WinePairingMobile() {
                         className="w-2 h-2 rounded-full flex-shrink-0"
                         style={{ backgroundColor: selectedWine.color }}
                       ></div>
-                      <span className="font-inter text-xs font-light text-accent">{grape}</span>
+                      <span className="font-inter text-xs font-light text-accent">
+                        {grape}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Perfect Match if food is selected */}
-              {selectedFood && activePairings.some(p => p.wineId === selectedWine.id) && (
-                <div className="space-y-3 border-t border-secondary/10 pt-4">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-secondary"></div>
-                    <h3 className="font-playfair text-xl font-medium text-accent">Perfect Match</h3>
-                  </div>
-                  {(() => {
-                    const matchingPairing = activePairings.find(p => p.wineId === selectedWine.id);
-                    const food = foodCategories.find(f => f.id === selectedFood);
-                    
-                    if (!matchingPairing || !food) return null;
-                    
-                    return (
-                      <div className="bg-white/50 border border-secondary/20 rounded-lg p-4 space-y-3">
-                        <div>
-                          <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-1">Pairing</p>
-                          <p className="font-playfair text-base font-medium text-accent">{food.name} × {selectedWine.name}</p>
-                        </div>
-                        <div className="border-t border-secondary/10 pt-3">
-                          <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-2">Why It Works</p>
-                          <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">{matchingPairing.reason}</p>
-                        </div>
-                        {matchingPairing.bridgeIngredients && matchingPairing.bridgeIngredients.length > 0 && (
-                          <div className="border-t border-secondary/10 pt-3">
-                            <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-2">Bridge Ingredients</p>
-                            <div className="flex flex-wrap gap-2">
-                              {matchingPairing.bridgeIngredients.map((ingredient, idx) => (
-                                <span
-                                  key={idx}
-                                  className="font-inter text-xs font-light text-accent/70 bg-secondary/10 border border-secondary/20 rounded-full px-3 py-1"
-                                >
-                                  {ingredient}
-                                </span>
-                              ))}
-                            </div>
+              {selectedFood &&
+                activePairings.some((p) => p.wineId === selectedWine.id) && (
+                  <div className="space-y-3 border-t border-secondary/10 pt-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-secondary"></div>
+                      <h3 className="font-playfair text-xl font-medium text-accent">
+                        Perfect Match
+                      </h3>
+                    </div>
+                    {(() => {
+                      const matchingPairing = activePairings.find(
+                        (p) => p.wineId === selectedWine.id,
+                      );
+                      const food = foodCategories.find(
+                        (f) => f.id === selectedFood,
+                      );
+
+                      if (!matchingPairing || !food) return null;
+
+                      return (
+                        <div className="bg-white/50 border border-secondary/20 rounded-lg p-4 space-y-3">
+                          <div>
+                            <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-1">
+                              Pairing
+                            </p>
+                            <p className="font-playfair text-base font-medium text-accent">
+                              {food.name} × {selectedWine.name}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                    );
-                  })()}
-                </div>
-              )}
+                          <div className="border-t border-secondary/10 pt-3">
+                            <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-2">
+                              Why It Works
+                            </p>
+                            <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+                              {matchingPairing.reason}
+                            </p>
+                          </div>
+                          {matchingPairing.bridgeIngredients &&
+                            matchingPairing.bridgeIngredients.length > 0 && (
+                              <div className="border-t border-secondary/10 pt-3">
+                                <p className="font-inter text-xs font-medium text-accent/60 uppercase tracking-wide mb-2">
+                                  Bridge Ingredients
+                                </p>
+                                <div className="flex flex-wrap gap-2">
+                                  {matchingPairing.bridgeIngredients.map(
+                                    (ingredient, idx) => (
+                                      <span
+                                        key={idx}
+                                        className="font-inter text-xs font-light text-accent/70 bg-secondary/10 border border-secondary/20 rounded-full px-3 py-1"
+                                      >
+                                        {ingredient}
+                                      </span>
+                                    ),
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                )}
             </div>
           </motion.div>
         </motion.div>
       )}
+      <section className="space-y-3 px-6 pb-4 mb-2 border-b border-secondary/10">
+        <h2 className="font-playfair text-lg font-medium text-accent">
+          Wine food pairing, step by step
+        </h2>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          Use this wine food pairing chart to connect your dish to a wine style
+          without guessing. Tap a food category on the left and watch the
+          matching wines on the right. Each selection can map to multiple styles
+          because the same ingredient profile can work with different
+          “directions” in wine: lift, structure, sweetness, or cleansing
+          bubbles.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          When you evaluate wine food pairing on the chart, read the pairing
+          reason like a checklist. Acidity is the most common lever: it
+          brightens rich sauces, cuts through fatty textures, and helps bitter
+          greens or citrus notes taste cleaner. Tannin is the second lever: it
+          supports protein and aged or cured flavors, especially when the reason
+          mentions binding, firm structure, or softening astringency. Body is
+          the weight-match: fuller wines tend to hold up to roasted,
+          caramelized, and umami-heavy dishes, while lighter styles keep
+          delicate foods from tasting overwhelmed.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          For wine food pairing involving dessert, match sweetness instead of
+          strength. If the dish is sweet, a drier wine often tastes “flat”
+          because the sugar wins. Sparkling is a reliable bridge for heavier
+          meals: the bubbles reset the palate between bites, which can make
+          cheese, roasted vegetables, and rich proteins feel more balanced.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          If a wine style appears across multiple foods, compare the levers the
+          chart is using. A “high acidity” reason showing up for roasted
+          vegetables and bitter greens usually means the wine is meant to cut
+          through richness and keep flavors crisp. When the reason emphasizes
+          tannin and protein, expect it to work best with meat, aged or cured
+          cheese, and sauces that have body. After a few passes, wine food
+          pairing becomes faster: you’ll recognize your own pattern (acidity,
+          tannin, body, sweetness, or bubbles) and choose the next pairing with
+          less guesswork.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/70 leading-relaxed">
+          Want a different starting point? Use the tools on the homepage:{" "}
+          <Link className="text-accent hover:underline" href="/wine">
+            start from a wine
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/food">
+            start from a dish
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/wizard">
+            smart sommelier
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/moods">
+            mood-based pairings
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/guide">
+            pairing guide
+          </Link>
+          , then come back to{" "}
+          <Link className="text-accent hover:underline" href="/chart">
+            the interactive chart
+          </Link>
+          .
+        </p>
+      </section>
     </div>
   );
 }

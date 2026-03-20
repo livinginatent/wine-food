@@ -1,28 +1,33 @@
-"use client";
+import type { Metadata } from "next";
+import ChartClient from "./ChartClient";
 
-import { useEffect, useState } from "react";
-import WinePairingChart from "@/components/WinePairingChart";
-import WinePairingMobile from "@/components/WinePairingMobile";
+export const metadata: Metadata = {
+  metadataBase: new URL("https://wineand.food"),
+  title: "Wine & Food Pairing Chart | Perfect Pairings",
+  description:
+    "Explore our wine and food pairing chart to discover perfect matches for wines and dishes. Find pairings by flavor, style, and cuisine.",
+  alternates: {
+    canonical: "https://wineand.food/chart",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://wineand.food/chart",
+    title: "Wine & Food Pairing Chart | Perfect Pairings",
+    description:
+      "Explore our wine and food pairing chart to discover perfect matches for wines and dishes. Find pairings by flavor, style, and cuisine.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wine & Food Pairing Chart | Perfect Pairings",
+    description:
+      "Explore our wine and food pairing chart to discover perfect matches for wines and dishes. Find pairings by flavor, style, and cuisine.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ChartPage() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  if (!mounted) {
-    return null; // Prevent hydration mismatch
-  }
-
-  return isMobile ? <WinePairingMobile /> : <WinePairingChart />;
+  return <ChartClient />;
 }

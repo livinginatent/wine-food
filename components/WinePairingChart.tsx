@@ -3,6 +3,7 @@
 import { useState, useRef } from "react";
 import { ArrowLeft, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface FoodCategory {
   id: string;
@@ -454,6 +455,75 @@ export default function WinePairingChart() {
           </div>
         </div>
       </section>
+      <section className="space-y-3 px-6 py-8 pb-4 mb-2 border-b border-secondary/10">
+        <h2 className="font-playfair text-lg font-medium text-accent">
+          Wine food pairing, step by step
+        </h2>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          Use this wine food pairing chart to connect your dish to a wine style
+          without guessing. Tap a food category on the left and watch the
+          matching wines on the right. Each selection can map to multiple styles
+          because the same ingredient profile can work with different
+          “directions” in wine: lift, structure, sweetness, or cleansing
+          bubbles.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          When you evaluate wine food pairing on the chart, read the pairing
+          reason like a checklist. Acidity is the most common lever: it
+          brightens rich sauces, cuts through fatty textures, and helps bitter
+          greens or citrus notes taste cleaner. Tannin is the second lever: it
+          supports protein and aged or cured flavors, especially when the reason
+          mentions binding, firm structure, or softening astringency. Body is
+          the weight-match: fuller wines tend to hold up to roasted,
+          caramelized, and umami-heavy dishes, while lighter styles keep
+          delicate foods from tasting overwhelmed.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          For wine food pairing involving dessert, match sweetness instead of
+          strength. If the dish is sweet, a drier wine often tastes “flat”
+          because the sugar wins. Sparkling is a reliable bridge for heavier
+          meals: the bubbles reset the palate between bites, which can make
+          cheese, roasted vegetables, and rich proteins feel more balanced.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/80 leading-relaxed">
+          If a wine style appears across multiple foods, compare the levers the
+          chart is using. A “high acidity” reason showing up for roasted
+          vegetables and bitter greens usually means the wine is meant to cut
+          through richness and keep flavors crisp. When the reason emphasizes
+          tannin and protein, expect it to work best with meat, aged or cured
+          cheese, and sauces that have body. After a few passes, wine food
+          pairing becomes faster: you’ll recognize your own pattern (acidity,
+          tannin, body, sweetness, or bubbles) and choose the next pairing with
+          less guesswork.
+        </p>
+        <p className="font-inter text-sm font-light text-accent/70 leading-relaxed">
+          Want a different starting point? Use the tools on the homepage:{" "}
+          <Link className="text-accent hover:underline" href="/wine">
+            start from a wine
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/food">
+            start from a dish
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/wizard">
+            smart sommelier
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/moods">
+            mood-based pairings
+          </Link>
+          ,{" "}
+          <Link className="text-accent hover:underline" href="/guide">
+            pairing guide
+          </Link>
+          , then come back to{" "}
+          <Link className="text-accent hover:underline" href="/chart">
+            the interactive chart
+          </Link>
+          .
+        </p>
+      </section>
 
       {/* Chart Section */}
       <section className="px-6 py-8 overflow-x-auto">
@@ -467,7 +537,7 @@ export default function WinePairingChart() {
                 Click on a wine bottle to see grape varieties
               </p>
             </div>
-            
+
             <svg
               ref={svgRef}
               viewBox="0 0 1400 600"
@@ -476,8 +546,10 @@ export default function WinePairingChart() {
             >
               {/* Connection paths */}
               {pairings.map((pairing, idx) => {
-                const food = foodCategories.find(f => f.id === pairing.foodId);
-                const wine = wineStyles.find(w => w.id === pairing.wineId);
+                const food = foodCategories.find(
+                  (f) => f.id === pairing.foodId,
+                );
+                const wine = wineStyles.find((w) => w.id === pairing.wineId);
                 if (!food || !wine) return null;
 
                 const isActive = hoveredFood === pairing.foodId;
@@ -496,7 +568,9 @@ export default function WinePairingChart() {
                       className="transition-all duration-700 ease-in-out cursor-pointer"
                       style={{
                         strokeDasharray: isActive ? "8,4" : "none",
-                        animation: isActive ? "dash 1.5s linear infinite" : "none",
+                        animation: isActive
+                          ? "dash 1.5s linear infinite"
+                          : "none",
                       }}
                       onMouseEnter={() => setHoveredPairing(pairing)}
                       onMouseLeave={() => setHoveredPairing(null)}
@@ -553,7 +627,10 @@ export default function WinePairingChart() {
                       fontSize="24"
                       opacity={opacity}
                       className="transition-all duration-300 pointer-events-none"
-                      style={{ transform: `scale(${scale})`, transformOrigin: `${food.position.x}px ${food.position.y}px` }}
+                      style={{
+                        transform: `scale(${scale})`,
+                        transformOrigin: `${food.position.x}px ${food.position.y}px`,
+                      }}
                     >
                       {food.icon}
                     </text>
@@ -586,7 +663,11 @@ export default function WinePairingChart() {
                       onClick={() => setSelectedWine(wine)}
                       className="cursor-pointer"
                       opacity={opacity}
-                      style={{ transform: `scale(${scale})`, transformOrigin: `${wine.position.x}px ${wine.position.y}px`, transition: "all 0.3s ease" }}
+                      style={{
+                        transform: `scale(${scale})`,
+                        transformOrigin: `${wine.position.x}px ${wine.position.y}px`,
+                        transition: "all 0.3s ease",
+                      }}
                     >
                       <rect
                         x={wine.position.x - 22}
@@ -681,37 +762,55 @@ export default function WinePairingChart() {
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-inter text-sm font-light text-accent">Body</span>
-                      <span className="font-inter text-sm font-medium text-accent">{selectedWine.profile.body}/5</span>
+                      <span className="font-inter text-sm font-light text-accent">
+                        Body
+                      </span>
+                      <span className="font-inter text-sm font-medium text-accent">
+                        {selectedWine.profile.body}/5
+                      </span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-2">
                       <div
                         className="bg-secondary rounded-full h-2 transition-all duration-500"
-                        style={{ width: `${(selectedWine.profile.body / 5) * 100}%` }}
+                        style={{
+                          width: `${(selectedWine.profile.body / 5) * 100}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-inter text-sm font-light text-accent">Acidity</span>
-                      <span className="font-inter text-sm font-medium text-accent">{selectedWine.profile.acidity}/5</span>
+                      <span className="font-inter text-sm font-light text-accent">
+                        Acidity
+                      </span>
+                      <span className="font-inter text-sm font-medium text-accent">
+                        {selectedWine.profile.acidity}/5
+                      </span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-2">
                       <div
                         className="bg-secondary rounded-full h-2 transition-all duration-500"
-                        style={{ width: `${(selectedWine.profile.acidity / 5) * 100}%` }}
+                        style={{
+                          width: `${(selectedWine.profile.acidity / 5) * 100}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-inter text-sm font-light text-accent">Tannin</span>
-                      <span className="font-inter text-sm font-medium text-accent">{selectedWine.profile.tannin}/5</span>
+                      <span className="font-inter text-sm font-light text-accent">
+                        Tannin
+                      </span>
+                      <span className="font-inter text-sm font-medium text-accent">
+                        {selectedWine.profile.tannin}/5
+                      </span>
                     </div>
                     <div className="w-full bg-secondary/20 rounded-full h-2">
                       <div
                         className="bg-secondary rounded-full h-2 transition-all duration-500"
-                        style={{ width: `${(selectedWine.profile.tannin / 5) * 100}%` }}
+                        style={{
+                          width: `${(selectedWine.profile.tannin / 5) * 100}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
