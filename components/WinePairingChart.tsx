@@ -433,6 +433,7 @@ export default function WinePairingChart() {
     return `M ${foodPos.x} ${foodPos.y} Q ${foodPos.x} ${midY} ${winePos.x} ${midY} L ${winePos.x} ${winePos.y}`;
   };
 //
+//
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
